@@ -56,6 +56,7 @@
     <string name="developer_title">Developer</string>
     <string name="app_not_found">App not found</string>
     <string name="back">Back</string>
+    <string name="close">Close</string>
 
     <!-- Installed Screen -->
     <string name="installed_title">Installed</string>
@@ -78,7 +79,7 @@
     <string name="about_card_title">About RORAX App Store</string>
     <string name="about_version">Version %1$s</string>
     <string name="about_package">Package: %1$s</string>
-    <string name="notifications_toggle_title">Update Notifications</string>
+    <string name="notifications_toggle_title">Update notifications</string>
     <string name="notifications_toggle_subtitle">Check for new apps and updates periodically</string>
 
     <!-- Request APK Screen -->
@@ -112,7 +113,7 @@
     <string name="btn_view">View</string>
     <string name="notification_channel_name">App updates</string>
     <string name="notification_channel_desc">Notifications for new apps and app updates</string>
-    <string name="notification_permission_title">Allow Notifications</string>
+    <string name="notification_permission_title">Allow notifications</string>
     <string name="notification_permission_desc">Enable notifications so you never miss new app releases or security updates.</string>
     <string name="notification_permission_allow">Allow</string>
     <string name="notification_permission_not_now">Not now</string>

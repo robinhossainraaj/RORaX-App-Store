@@ -171,7 +171,7 @@ fun ScreenshotRow(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Close,
-                        contentDescription = stringResource(R.string.back),
+                        contentDescription = stringResource(R.string.close),
                         tint = MaterialTheme.colorScheme.inverseOnSurface
                     )
                 }
