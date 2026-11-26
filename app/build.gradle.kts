@@ -59,6 +59,8 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+    // java.time is used for Dubai notification scheduling on minSdk 24.
+    isCoreLibraryDesugaringEnabled = true
   }
   buildFeatures {
     compose = true
@@ -86,6 +88,7 @@ googleServices { missingGoogleServicesStrategy = MissingGoogleServicesStrategy.W
 dependencies {
   implementation(platform(libs.androidx.compose.bom))
   implementation(platform(libs.firebase.bom))
+  coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
   // implementation(libs.accompanist.permissions)
   implementation(libs.androidx.activity.compose)
   // implementation(libs.androidx.camera.camera2)
@@ -149,11 +152,18 @@ dependencies {
 
 // ui-android design guard. Kept as a plain Gradle task so the release build does
 // not depend on an extra detekt plugin version.
+val designSourceDirs = listOf(file("src/main/java"), file("src/main/kotlin"))
+val designProjectRoot = rootDir
+
 tasks.register("detektDesign") {
   group = "verification"
   description = "Checks ui-android design rules outside ui/theme."
   doLast {
-    val sourceFiles = fileTree("src/main/java") + fileTree("src/main/kotlin")
+    val sourceFiles = designSourceDirs.asSequence()
+      .filter { it.exists() }
+      .flatMap { it.walkTopDown().asSequence() }
+      .filter { it.isFile && it.extension == "kt" && !it.path.contains("/ui/theme/") }
+      .toList()
     val violations = mutableListOf<String>()
     val patterns = mapOf(
       "Raw dp literal" to Regex("""\b\d+(?:\.\d+)?\.dp\b"""),
@@ -167,13 +177,11 @@ tasks.register("detektDesign") {
     )
 
     sourceFiles.forEach { file ->
-      if (file.isFile && file.extension == "kt" && !file.path.contains("/ui/theme/")) {
-        val text = file.readText()
-        patterns.forEach { (label, regex) ->
-          regex.findAll(text).forEach { match ->
-            val line = text.substring(0, match.range.first).count { it == '\n' } + 1
-            violations += "${file.relativeTo(rootDir)}:$line [$label] ${match.value}"
-          }
+      val text = file.readText()
+      patterns.forEach { (label, regex) ->
+        regex.findAll(text).forEach { match ->
+          val line = text.substring(0, match.range.first).count { it == '\n' } + 1
+          violations += "${file.relativeTo(designProjectRoot)}:$line [$label] ${match.value}"
         }
       }
     }

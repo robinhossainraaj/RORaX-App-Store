@@ -1,0 +1,666 @@
+Design checks and debug APK	Set up job	﻿2026-11-26T16:52:39.8333696Z Current runner version: '2.338.2'
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8357650Z ##[group]Runner Image Provisioner
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8358442Z Hosted Compute Agent
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8358976Z Version: 20261111.635
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8359695Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8360430Z Build Date: 2026-11-11T01:49:01Z
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8361091Z Worker ID: {8cb17424-9914-4584-9aaf-99af29fa1f9c}
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8361858Z Region: eastus2
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8362345Z Cloud: Azure
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8362803Z ##[endgroup]
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8363931Z ##[group]Operating System
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8364537Z Ubuntu
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8365045Z 26.04.1
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8365510Z LTS
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8365965Z ##[endgroup]
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8366542Z ##[group]Runner Image
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8367162Z Image: ubuntu-26.04
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8367720Z Version: 20261116.202.1
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8368694Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8370885Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8371825Z ##[endgroup]
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8372886Z ##[group]GITHUB_TOKEN Permissions
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8374755Z Contents: read
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8375355Z Metadata: read
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8375913Z ##[endgroup]
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8377510Z Secret source: Actions
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8378495Z Cache mode: write
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8379630Z Prepare workflow directory
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8645145Z Prepare all required actions
+Design checks and debug APK	Set up job	2026-11-26T16:52:39.8710192Z Getting action download info
+Design checks and debug APK	Set up job	2026-11-26T16:52:40.0648401Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Design checks and debug APK	Set up job	2026-11-26T16:52:40.1282830Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+Design checks and debug APK	Set up job	2026-11-26T16:52:40.3943285Z Download action repository 'gradle/actions@v4' (SHA:ed408507eac070d1f99cc633dbcf757c94c7933a)
+Design checks and debug APK	Set up job	2026-11-26T16:52:41.0879059Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Design checks and debug APK	Set up job	2026-11-26T16:52:41.2741929Z Complete job name: Design checks and debug APK
+Design checks and debug APK	Check out repository	﻿2026-11-26T16:52:41.3429735Z ##[group]Run actions/checkout@v4
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3430499Z with:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3431025Z   repository: robinhossainraaj/RORaX-App-Store
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3435830Z   token: ***
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3436299Z   ssh-strict: true
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3436780Z   ssh-user: git
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3437425Z   persist-credentials: true
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3438214Z   clean: true
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3438942Z   sparse-checkout-cone-mode: true
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3439940Z   fetch-depth: 1
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3440630Z   fetch-tags: false
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3441381Z   show-progress: true
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3442126Z   lfs: false
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3442807Z   submodules: false
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3443523Z   set-safe-directory: true
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3444367Z   allow-unsafe-pr-checkout: false
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.3445597Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5290481Z Syncing repository: robinhossainraaj/RORaX-App-Store
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5293089Z ##[group]Getting Git version info
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5294090Z Working directory is '/home/runner/work/RORaX-App-Store/RORaX-App-Store'
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5296040Z [command]/usr/bin/git version
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5296868Z git version 2.56.1
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5308113Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5318542Z Temporarily overriding HOME='/home/runner/work/_temp/941d88f1-c44a-46ed-9f34-4ffe47b1d705' before making global git config changes
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5320971Z Adding repository directory to the temporary git global config as a safe directory
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5324221Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/RORaX-App-Store/RORaX-App-Store
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5446244Z Deleting the contents of '/home/runner/work/RORaX-App-Store/RORaX-App-Store'
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5448257Z ##[group]Initializing the repository
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5449852Z [command]/usr/bin/git init /home/runner/work/RORaX-App-Store/RORaX-App-Store
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5475913Z hint: Using 'master' as the name for the initial branch. This default branch name
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5477266Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5478722Z hint: to use in all of your new repositories, which will suppress this warning,
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5480137Z hint: call:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5480977Z hint:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5481808Z hint: 	git config --global init.defaultBranch <name>
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5482832Z hint:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5483465Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5484537Z hint: 'development'. The just-created branch can be renamed via this command:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5485482Z hint:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5486150Z hint: 	git branch -m <name>
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5486923Z hint:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5487991Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5489470Z Initialized empty Git repository in /home/runner/work/RORaX-App-Store/RORaX-App-Store/.git/
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5497198Z [command]/usr/bin/git remote add origin https://github.com/robinhossainraaj/RORaX-App-Store
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5543007Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5543871Z ##[group]Disabling automatic garbage collection
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5546144Z [command]/usr/bin/git config --local gc.auto 0
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5574816Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5576144Z ##[group]Setting up auth
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5579829Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5610283Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.5981859Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.6009565Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.6225292Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.6253531Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.6466363Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.6502202Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.6503436Z ##[group]Fetching the repository
+Design checks and debug APK	Check out repository	2026-11-26T16:52:41.6508257Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a1f3ebbb49eb21b215ec74ae5c1d626eb3b18564:refs/remotes/origin/main
+Design checks and debug APK	Check out repository	2026-11-26T16:52:42.9942730Z From https://github.com/robinhossainraaj/RORaX-App-Store
+Design checks and debug APK	Check out repository	2026-11-26T16:52:42.9944273Z  * [new ref]         a1f3ebbb49eb21b215ec74ae5c1d626eb3b18564 -> origin/main
+Design checks and debug APK	Check out repository	2026-11-26T16:52:42.9946669Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:42.9947103Z ##[group]Determining the checkout info
+Design checks and debug APK	Check out repository	2026-11-26T16:52:42.9948977Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:42.9954946Z [command]/usr/bin/git sparse-checkout disable
+Design checks and debug APK	Check out repository	2026-11-26T16:52:42.9998565Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Design checks and debug APK	Check out repository	2026-11-26T16:52:43.0023865Z ##[group]Checking out the ref
+Design checks and debug APK	Check out repository	2026-11-26T16:52:43.0027397Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Design checks and debug APK	Check out repository	2026-11-26T16:52:43.0968631Z Switched to a new branch 'main'
+Design checks and debug APK	Check out repository	2026-11-26T16:52:43.0980260Z branch 'main' set up to track 'origin/main'.
+Design checks and debug APK	Check out repository	2026-11-26T16:52:43.0998083Z ##[endgroup]
+Design checks and debug APK	Check out repository	2026-11-26T16:52:43.1039906Z [command]/usr/bin/git log -1 --format=%H
+Design checks and debug APK	Check out repository	2026-11-26T16:52:43.1062107Z a1f3ebbb49eb21b215ec74ae5c1d626eb3b18564
+Design checks and debug APK	Set up JDK 21	﻿2026-11-26T16:52:43.1288130Z ##[group]Run actions/setup-java@v4
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1288555Z with:
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1288718Z   distribution: temurin
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1288881Z   java-version: 21
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1289037Z   java-package: jdk
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1289385Z   check-latest: false
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1289569Z   server-id: github
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1289729Z   server-username: GITHUB_ACTOR
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1289917Z   server-password: GITHUB_TOKEN
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1290098Z   overwrite-settings: true
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1290269Z   job-status: success
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1291780Z   token: ***
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.1291941Z ##[endgroup]
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2457997Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2463543Z ##[group]Installed distributions
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2480026Z Resolved Java 21.0.13+9 from tool-cache
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2480347Z Setting Java 21.0.13+9 as the default
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2486503Z (node:2191) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2487291Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2488520Z Creating toolchains.xml for JDK version 21 from temurin
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2548553Z Writing to /home/runner/.m2/toolchains.xml
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2549131Z 
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2549518Z Java configuration:
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2549826Z   Distribution: temurin
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2550113Z   Version: 21.0.13+9
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2550474Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2550759Z 
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2551178Z ##[endgroup]
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2569623Z Creating settings.xml with server-id: github
+Design checks and debug APK	Set up JDK 21	2026-11-26T16:52:43.2569908Z Writing to /home/runner/.m2/settings.xml
+Design checks and debug APK	Set up Gradle	﻿2026-11-26T16:52:43.2830596Z ##[group]Run gradle/actions/setup-gradle@v4
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2830858Z with:
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2831015Z   cache-disabled: false
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2831189Z   cache-read-only: false
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2831384Z   cache-write-only: false
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2831563Z   cache-overwrite-existing: false
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2831750Z   cache-cleanup: on-success
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2831948Z   gradle-home-cache-includes: caches
+Design checks and debug APK	Set up Gradle	notifications
+Design checks and debug APK	Set up Gradle	
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2832175Z   add-job-summary: always
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2832357Z   add-job-summary-as-pr-comment: never
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2832552Z   dependency-graph: disabled
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2832761Z   dependency-graph-report-dir: dependency-graph-reports
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2832998Z   dependency-graph-continue-on-failure: true
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2833205Z   build-scan-publish: false
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2833385Z   validate-wrappers: true
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2833562Z   allow-snapshot-wrappers: false
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2833751Z   gradle-home-cache-strict-match: false
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2834030Z   workflow-job-context: null
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2835609Z   github-token: ***
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2835759Z env:
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2835964Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2836270Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.2836519Z ##[endgroup]
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.6156942Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.6157923Z Preparing cache for cleanup.
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.6160544Z ##[group]Restore Gradle state from cache
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.6976016Z Gradle User Home cache not found. Will initialize empty.
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.6976601Z ##[endgroup]
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:43.9082510Z Fetched 10 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.0011515Z Fetched 20 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.0822766Z Fetched 30 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.2166691Z Fetched 40 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.2958141Z Fetched 50 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.3783499Z Fetched 60 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.4657455Z Fetched 70 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.5474520Z Fetched 74 of 74 checksums
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.5476045Z ##[group]All Gradle Wrapper jars are valid
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.5476786Z ✓ Found known Gradle Wrapper JAR files:
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.5477096Z   b3a875ddc1f044746e1b1a55f645584505f4a10438c1afea9f15e92a7c42ec13 gradle/wrapper/gradle-wrapper.jar
+Design checks and debug APK	Set up Gradle	2026-11-26T16:52:44.5477629Z ##[endgroup]
+Design checks and debug APK	Make Gradle wrapper executable	﻿2026-11-26T16:52:44.5617611Z ##[group]Run chmod +x gradlew
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5617863Z ^[[36;1mchmod +x gradlew^[[0m
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5649482Z shell: /usr/bin/bash -e {0}
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5649676Z env:
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5649867Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5650161Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5650410Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5650593Z   GRADLE_USER_HOME: /home/runner/.gradle
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5650766Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5650944Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5651224Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5651498Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5651690Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Design checks and debug APK	Make Gradle wrapper executable	2026-11-26T16:52:44.5651852Z ##[endgroup]
+Design checks and debug APK	Create debug signing keystore	﻿2026-11-26T16:52:44.5785160Z ##[group]Run keytool -genkeypair -v \
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5785393Z ^[[36;1mkeytool -genkeypair -v \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5785581Z ^[[36;1m  -keystore debug.keystore \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5785756Z ^[[36;1m  -storepass android \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5785912Z ^[[36;1m  -keypass android \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5786066Z ^[[36;1m  -alias androiddebugkey \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5786226Z ^[[36;1m  -keyalg RSA \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5786376Z ^[[36;1m  -keysize 2048 \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5786525Z ^[[36;1m  -validity 10000 \^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5786699Z ^[[36;1m  -dname "CN=Android Debug,O=Android,C=US"^[[0m
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5813642Z shell: /usr/bin/bash -e {0}
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5813802Z env:
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5813987Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5814275Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5814518Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5814724Z   GRADLE_USER_HOME: /home/runner/.gradle
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5814898Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5815075Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5815326Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5815599Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5815785Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:44.5815949Z ##[endgroup]
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:45.0131213Z Generating 2,048 bit RSA key pair and self-signed certificate (SHA384withRSA) with a validity of 10,000 days
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:45.0150304Z 	for: CN=Android Debug, O=Android, C=US
+Design checks and debug APK	Create debug signing keystore	2026-11-26T16:52:45.1041295Z [Storing debug.keystore]
+Design checks and debug APK	Run design checks and lint	﻿2026-11-26T16:52:45.1801451Z ##[group]Run ./gradlew detektDesign lintDebug --stacktrace
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1801736Z ^[[36;1m./gradlew detektDesign lintDebug --stacktrace^[[0m
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1828670Z shell: /usr/bin/bash -e {0}
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1828827Z env:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1829012Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1829474Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1829722Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1829900Z   GRADLE_USER_HOME: /home/runner/.gradle
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1830071Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1830245Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1830492Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1830759Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1831070Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.1831257Z ##[endgroup]
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:45.2727578Z Downloading https://services.gradle.org/distributions/gradle-9.3.1-bin.zip
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:46.4943238Z .............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3773596Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3774282Z Welcome to Gradle 9.3.1!
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3774520Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3775298Z Here are the highlights of this release:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3775658Z  - Test reporting improvements
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3776010Z  - Error and warning improvements
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3776265Z  - Build authoring improvements
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3776413Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3776681Z For more details see https://docs.gradle.org/9.3.1/release-notes.html
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.3776939Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:47.4771542Z Starting a Gradle Daemon (subsequent builds will be faster)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:52:49.1781174Z Calculating task graph as no cached configuration is available for tasks: detektDesign lintDebug
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.7784404Z > Task :app:detektDesign
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8783148Z > Task :app:preBuild UP-TO-DATE
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8791578Z > Task :app:preDebugBuild UP-TO-DATE
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8797322Z > Task :app:generateDebugBuildConfig
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8797860Z > Task :app:generateDebugResources
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8798215Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8813824Z > Task :app:processDebugGoogleServices
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8814428Z File google-services.json is missing.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8814815Z The Google Services Plugin cannot function without it.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:05.8816664Z Searched locations: /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/debug/google-services.json, /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/debug/google-services.json, /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/google-services.json, /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/debug/google-services.json, /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/Debug/google-services.json, /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/google-services.json
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:06.0772365Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:06.0774786Z > Task :app:packageDebugResources
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:07.8770680Z > Task :app:processDebugNavigationResources
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:09.0771047Z > Task :app:parseDebugLocalResources
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:13.2800205Z > Task :app:javaPreCompileDebug
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:13.2829723Z > Task :app:generateDebugRFile
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:13.2859727Z > Task :app:mapDebugSourceSetPaths
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:13.2889573Z > Task :app:checkDebugAarMetadata
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:13.3789163Z > Task :app:compileDebugNavigationResources
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:13.9771266Z > Task :app:createDebugCompatibleScreenManifests
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:13.9777899Z > Task :app:extractDeepLinksDebug
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:14.6784831Z > Task :app:mergeDebugResources
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:14.7810222Z > Task :app:processDebugMainManifest
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:14.9810308Z > Task :app:processDebugManifest
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:14.9818350Z > Task :app:preDebugAndroidTestBuild SKIPPED
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:15.0782883Z > Task :app:extractProguardFiles
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:15.0784896Z > Task :app:preDebugUnitTestBuild UP-TO-DATE
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:15.0786481Z > Task :app:processDebugManifestForPackage
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:16.0774576Z > Task :app:processDebugResources
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:17.5814736Z > Task :app:kspDebugKotlin
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:35.8771703Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:35.8785300Z > Task :app:compileDebugKotlin
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:35.8786453Z w: file:///home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/main/java/com/example/ui/theme/Theme.kt:116:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:35.8787644Z w: file:///home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/main/java/com/example/ui/theme/Theme.kt:117:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:41.7785687Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:41.7800311Z > Task :app:compileDebugJavaWithJavac
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:41.8770946Z > Task :app:bundleDebugClassesToCompileJar
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:45.0772059Z > Task :app:generateDebugLintReportModel
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:45.2770768Z > Task :app:generateDebugAndroidTestLintModel
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:47.2771466Z > Task :app:generateDebugUnitTestLintModel
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:55.2810362Z > Task :app:lintAnalyzeDebugAndroidTest
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:54:56.3773505Z > Task :app:lintAnalyzeDebugUnitTest
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.2770838Z > Task :app:lintAnalyzeDebug
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5778866Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5800206Z > Task :app:lintReportDebug
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5816035Z Wrote HTML report to file:///home/runner/work/RORaX-App-Store/RORaX-App-Store/app/build/reports/lint-results-debug.html
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5817526Z Lint found 12 errors and 68 warnings. First failure:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5831872Z /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/main/java/com/example/data/model/GitHubNotification.kt:46: Error: Call requires API level 26, or core library desugaring (current min is 24): java.time.ZoneId#of [NewApi]
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5833188Z         val dubaiZone = ZoneId.of(Constants.DUBAI_ZONE_ID)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5840898Z                                ~~
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5846780Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5846918Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5859593Z > Task :app:lintDebug FAILED
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5864384Z Lint found 12 errors, 68 warnings. First failure:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5889435Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5914703Z /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/main/java/com/example/data/model/GitHubNotification.kt:46: Error: Call requires API level 26, or core library desugaring (current min is 24): java.time.ZoneId#of [NewApi]
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5970191Z         val dubaiZone = ZoneId.of(Constants.DUBAI_ZONE_ID)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5970849Z                                ~~
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5989848Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.5990386Z The full lint text report is located at:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6050542Z   /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6770879Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_3-1795711970928.json
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6771600Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6772237Z [Incubating] Problems report is available at: file:///home/runner/work/RORaX-App-Store/RORaX-App-Store/build/reports/problems/problems-report.html
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6779756Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6792209Z FAILURE: Build completed with 2 failures.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6792983Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6793262Z 1: Task failed with an exception.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6793630Z -----------
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6793941Z * What went wrong:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6794270Z Execution failed for task ':app:lintDebug'.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6794683Z > Lint found errors in the project; aborting build.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6795067Z   
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6795458Z   Fix the issues identified by lint, or create a baseline to see only new errors.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6796212Z   To create a baseline, run `gradlew updateLintBaseline` after adding the following to the module's build.gradle file:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6797187Z   ```
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6797472Z   android {
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6797743Z       lint {
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6798051Z           baseline = file("lint-baseline.xml")
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6798414Z       }
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6798687Z   }
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6798952Z   ```
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6799500Z   For more details, see https://developer.android.com/studio/write/lint#snapshot
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6857476Z   
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6858126Z   Lint found 12 errors, 68 warnings. First failure:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6858556Z   
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6859678Z   /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/main/java/com/example/data/model/GitHubNotification.kt:46: Error: Call requires API level 26, or core library desugaring (current min is 24): java.time.ZoneId#of [NewApi]
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6861352Z           val dubaiZone = ZoneId.of(Constants.DUBAI_ZONE_ID)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6861806Z                                  ~~
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6862145Z   
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6862457Z   The full lint text report is located at:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6863205Z     /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6863890Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6864066Z * Try:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6864432Z > Run with --info or --debug option to get more log output.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6864969Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6865492Z > Get more help at https://help.gradle.org.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6865785Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6865973Z * Exception is:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6866448Z org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6867401Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6868257Z 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6869041Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6870200Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6871283Z 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6872381Z 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6873407Z 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6874432Z 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6875379Z 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6876319Z 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6877278Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6878156Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6879004Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6880070Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6881153Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6882413Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6883304Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6884199Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6885400Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6886314Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6887188Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6888042Z 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6889025Z 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6890618Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6891638Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6892724Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6893702Z 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6894662Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6895779Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6896777Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6897566Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6898367Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6899317Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6900043Z Caused by: java.lang.RuntimeException: Lint found errors in the project; aborting build.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6900471Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6900776Z Fix the issues identified by lint, or create a baseline to see only new errors.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6901475Z To create a baseline, run `gradlew updateLintBaseline` after adding the following to the module's build.gradle file:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6902062Z ```
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6902347Z android {
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6902630Z     lint {
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6902950Z         baseline = file("lint-baseline.xml")
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6903309Z     }
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6903579Z }
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6903850Z ```
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6904258Z For more details, see https://developer.android.com/studio/write/lint#snapshot
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6904709Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6904982Z Lint found 12 errors, 68 warnings. First failure:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6905279Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6906095Z /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/src/main/java/com/example/data/model/GitHubNotification.kt:46: Error: Call requires API level 26, or core library desugaring (current min is 24): java.time.ZoneId#of [NewApi]
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6910189Z         val dubaiZone = ZoneId.of(Constants.DUBAI_ZONE_ID)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6910617Z                                ~~
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6910871Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6911204Z The full lint text report is located at:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6912196Z   /home/runner/work/RORaX-App-Store/RORaX-App-Store/app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6916119Z 	at com.android.build.gradle.internal.lint.AndroidLintWorkAction$Companion.maybeThrowException(AndroidLintWorkAction.kt:232)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6917324Z 	at com.android.build.gradle.internal.lint.AndroidLintTextOutputTask.doTaskAction(AndroidLintTextOutputTask.kt:105)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.6918425Z 	at com.android.build.gradle.internal.tasks.NonIncrementalTask$taskAction$$inlined$recordTaskAction$1.invoke(BaseTask.kt:72)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7000204Z 	at com.android.build.gradle.internal.tasks.Blocks.recordSpan(Blocks.java:51)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7000925Z 	at com.android.build.gradle.internal.tasks.NonIncrementalTask.taskAction(NonIncrementalTask.kt:71)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7001507Z 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7002115Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7003496Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7004227Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7004860Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7005539Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7006296Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7007056Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7007591Z 32 actionable tasks: 32 executed
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7008112Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7044622Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7045329Z Configuration cache entry discarded with 2 problems.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7046203Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7070054Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7100020Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7110235Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7111266Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7112291Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7113096Z 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:110)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7113818Z 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7114481Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:64)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7115142Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:61)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7116025Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7117125Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7118114Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7118988Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7120009Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7121425Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7122307Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7123122Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:61)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7123781Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:47)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7124502Z 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7125289Z 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7126982Z 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7128012Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7128937Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7129998Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:70)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7130974Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:40)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7131798Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7132616Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:62)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7133558Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:27)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7134544Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7135589Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7136564Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7137513Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7138343Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7139115Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:192)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7140042Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7140647Z 	at org.gradle.internal.Either$Right.fold(Either.java:176)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7141235Z 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7142066Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7142785Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7143513Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7144320Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7145117Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7145901Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7146649Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7147347Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7148484Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7149766Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7150889Z 	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7151997Z 	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7153046Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7154037Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7155170Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7156018Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7156777Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7157461Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:64)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7158159Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:42)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7159101Z 	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:77)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7160458Z 	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:46)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7161627Z 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:133)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7162670Z 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7163603Z 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7164672Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7165741Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7166718Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7167672Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7168606Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7169556Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7170387Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7171258Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7172102Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7173017Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7173874Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7174657Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7175617Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7177175Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7178254Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7179167Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7180075Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7180875Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:44)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7181555Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7182311Z 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7183426Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7184123Z 	... 30 more
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7184358Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7184590Z ==============================================================================
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7184915Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7185127Z 2: Task failed with an exception.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7185475Z -----------
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7185781Z * What went wrong:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7186140Z Configuration cache problems found in this build.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7186466Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7186713Z 2 problems were found storing the configuration cache.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7187524Z - Task `:app:detektDesign` of type `org.gradle.api.DefaultTask`: cannot serialize Gradle script object references as these are not supported with the configuration cache.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7188593Z   See https://docs.gradle.org/9.3.1/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7190040Z - Task `:app:detektDesign` of type `org.gradle.api.DefaultTask`: cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject', a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7191347Z   See https://docs.gradle.org/9.3.1/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7191910Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7192658Z See the complete report at file:///home/runner/work/RORaX-App-Store/RORaX-App-Store/build/reports/configuration-cache/xa9b9sj1paojn2xaptm35ice/eyolqu1sqj7w1c5odov43i9cn/configuration-cache-report.html
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7193471Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7193653Z * Try:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7194015Z > Run with --info or --debug option to get more log output.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7194556Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7195068Z > Get more help at https://help.gradle.org.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7195381Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7195577Z * Exception is:
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7196176Z org.gradle.internal.cc.impl.ConfigurationCacheProblemsException: Configuration cache problems found in this build.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7196724Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7196966Z 2 problems were found storing the configuration cache.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7197771Z - Task `:app:detektDesign` of type `org.gradle.api.DefaultTask`: cannot serialize Gradle script object references as these are not supported with the configuration cache.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7198830Z   See https://docs.gradle.org/9.3.1/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7200296Z - Task `:app:detektDesign` of type `org.gradle.api.DefaultTask`: cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject', a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7201375Z   See https://docs.gradle.org/9.3.1/userguide/configuration_cache_requirements.html#config_cache:requirements:disallowed_types
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7202000Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7202602Z See the complete report at file:///home/runner/work/RORaX-App-Store/RORaX-App-Store/build/reports/configuration-cache/xa9b9sj1paojn2xaptm35ice/eyolqu1sqj7w1c5odov43i9cn/configuration-cache-report.html
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7203673Z 	at org.gradle.internal.cc.impl.problems.ConfigurationCacheProblems.queryFailure(ConfigurationCacheProblems.kt:328)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7204482Z 	at org.gradle.internal.cc.impl.problems.ConfigurationCacheProblems.report(ConfigurationCacheProblems.kt:359)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7205349Z 	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.reportProblems(ProblemReportingBuildActionRunner.java:66)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7206231Z 	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.run(ProblemReportingBuildActionRunner.java:57)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7207096Z 	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:83)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7208387Z 	at org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(FileSystemWatchingBuildActionRunner.java:135)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7209479Z 	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:54)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7210433Z 	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.lambda$execute$0(RootBuildLifecycleBuildActionExecutor.java:101)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7211245Z 	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:126)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7230163Z 	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.execute(RootBuildLifecycleBuildActionExecutor.java:101)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7262474Z 	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.runRootBuildAction(BuildTreeLifecycleBuildActionExecutor.java:98)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7263675Z 	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.execute(BuildTreeLifecycleBuildActionExecutor.java:69)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7268512Z 	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:65)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7293713Z 	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:61)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7295362Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7299825Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7300859Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7301751Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7302667Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7303570Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7304469Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7305418Z 	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor.execute(RunAsBuildOperationBuildActionExecutor.java:61)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7306446Z 	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.lambda$execute$0(RunAsWorkerThreadBuildActionExecutor.java:36)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7307412Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7308239Z 	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7309881Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7311044Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7311792Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7312534Z 	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.execute(RunAsWorkerThreadBuildActionExecutor.java:36)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7313446Z 	at org.gradle.tooling.internal.provider.continuous.ContinuousBuildActionExecutor.execute(ContinuousBuildActionExecutor.java:110)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7314380Z 	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecutor.execute(SubscribableBuildActionExecutor.java:64)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7315175Z 	at org.gradle.internal.session.DefaultBuildSessionContext.execute(DefaultBuildSessionContext.java:46)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7316358Z 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:106)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7317506Z 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:94)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7318343Z 	at org.gradle.internal.session.BuildSessionState.run(BuildSessionState.java:73)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7319166Z 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:67)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7320415Z 	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:45)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7321482Z 	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:57)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7322520Z 	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:32)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7323567Z 	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:51)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7324518Z 	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:39)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7325426Z 	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:47)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7326256Z 	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:31)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7326962Z 	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:70)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7327565Z 	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7328266Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7328997Z 	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7329878Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7330648Z 	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:29)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7331371Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7332169Z 	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7332960Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7333715Z 	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.lambda$execute$0(ForwardClientInput.java:40)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7334449Z 	at org.gradle.internal.daemon.clientinput.ClientInputForwarder.forwardInput(ClientInputForwarder.java:80)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7336242Z 	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:37)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7336931Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7337616Z 	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:64)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7338307Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7338945Z 	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7339919Z 	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7340616Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7341558Z 	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:84)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7342282Z 	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7342983Z 	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7343767Z 	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7344560Z 	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7345334Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7346034Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7346409Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7346545Z ==============================================================================
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7346762Z 
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:17.7346848Z BUILD FAILED in 2m 32s
+Design checks and debug APK	Run design checks and lint	2026-11-26T16:55:18.1581494Z ##[error]Process completed with exit code 1.
+Design checks and debug APK	Post Set up Gradle	﻿2026-11-26T16:55:18.1717571Z Post job cleanup.
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:18.3466009Z In post-action step
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:18.3474584Z ##[group]Stopping Gradle daemons
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:18.3475108Z Stopping Gradle daemons for /home/runner/.gradle/wrapper/dists/gradle-9.3.1-bin/23ovyewtku6u96viwx3xl3oks/gradle-9.3.1
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:18.3486563Z [command]/home/runner/.gradle/wrapper/dists/gradle-9.3.1-bin/23ovyewtku6u96viwx3xl3oks/gradle-9.3.1/bin/gradle --stop
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:18.9979614Z Stopping Daemon(s)
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:18.9980267Z 1 Daemon stopped
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.0151725Z ##[endgroup]
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.0173933Z Not performing cache-cleanup due to build failure
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.0193792Z ##[group]Caching Gradle state
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.0300302Z Not saving configuration-cache state, as no encryption key was provided
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.0573284Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.0649025Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.7822081Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.8274534Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.8418345Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.9438759Z Sent 60787 of 60787 (100.0%), 0.7 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.9868797Z Sent 91151 of 91151 (100.0%), 1.9 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:19.9976013Z Sent 95872 of 95872 (100.0%), 1.9 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.0890153Z Saved cache entry with key gradle-instrumented-jars-v1-da27189608cc64b8ccdc1e8234084779 from /home/runner/.gradle/caches/jars-*/*/ in 324ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.1008377Z Saved cache entry with key gradle-groovy-dsl-v1-28b9a41f693ba754e53f6f5a3dfc445c from /home/runner/.gradle/caches/*/groovy-dsl/*/ in 296ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.1402952Z Saved cache entry with key gradle-kotlin-dsl-v1-b8f6e27bedaaa0f2aa97adb010b2367f from /home/runner/.gradle/caches/*/kotlin-dsl/accessors/*/,/home/runner/.gradle/caches/*/kotlin-dsl/scripts/*/ in 365ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.2099714Z Sent 41993401 of 41993401 (100.0%), 89.0 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.3109919Z Saved cache entry with key gradle-generated-gradle-jars-v1-cb4b032a7d08b9bf1e84e9eacaebcc29 from /home/runner/.gradle/caches/9.3.1/generated-gradle-jars/gradle-api-9.3.1.jar in 1274ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.4471440Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.4824998Z Sent 136351915 of 136351915 (100.0%), 159.0 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.5912367Z Saved cache entry with key gradle-wrapper-zips-v1-8c0de4c6bda6041d6e054bf825a89c98 from /home/runner/.gradle/wrapper/dists/gradle-9.3.1-bin/23ovyewtku6u96viwx3xl3oks in 1552ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:20.8143857Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:22.8214389Z Sent 0 of 645485838 (0.0%), 0.0 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:23.2458625Z Sent 106269872 of 173378736 (61.3%), 101.4 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:23.2796703Z Sent 173378736 of 173378736 (100.0%), 160.1 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:23.3866120Z Saved cache entry with key gradle-transforms-v1-c3d050623693187b4023fa4331be72cb from /home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/ in 3005ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:24.9067953Z Sent 335544320 of 645485838 (52.0%), 103.7 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:25.4197673Z Sent 645485838 of 645485838 (100.0%), 171.1 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:25.5539732Z Saved cache entry with key gradle-dependencies-v1-40c4a237a29bb21f63e504d360602f91 from /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 5801ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:25.9909822Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/RORaX-App-Store/RORaX-App-Store --files-from manifest.txt --use-compress-program zstdmt
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:26.4355556Z Sent 11136511 of 11136511 (100.0%), 43.2 MBs/sec
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:26.5157843Z Saved cache entry with key gradle-home-v1|Linux-X64|build[2057be3b25fa0a8fd504e89493f0f77f]-a1f3ebbb49eb21b215ec74ae5c1d626eb3b18564 from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 538ms
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:26.5159452Z ##[endgroup]
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:26.5164471Z Generating Job Summary
+Design checks and debug APK	Post Set up Gradle	2026-11-26T16:55:26.5174113Z Completed post-action step
+Design checks and debug APK	Post Set up JDK 21	﻿2026-11-26T16:55:26.5473734Z Post job cleanup.
+Design checks and debug APK	Post Set up JDK 21	2026-11-26T16:55:26.6492758Z (node:2803) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Design checks and debug APK	Post Set up JDK 21	2026-11-26T16:55:26.6493788Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Design checks and debug APK	Post Check out repository	﻿2026-11-26T16:55:26.6708913Z Post job cleanup.
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.7426939Z [command]/usr/bin/git version
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.7487836Z git version 2.56.1
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.7530167Z Temporarily overriding HOME='/home/runner/work/_temp/cf4a305b-37c9-4cb7-94da-f3876225634d' before making global git config changes
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.7540149Z Adding repository directory to the temporary git global config as a safe directory
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.7541070Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/RORaX-App-Store/RORaX-App-Store
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.7619042Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.7673892Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.8003632Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.8032572Z http.https://github.com/.extraheader
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.8056118Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.8085823Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.8339349Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Design checks and debug APK	Post Check out repository	2026-11-26T16:55:26.8372832Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Design checks and debug APK	Complete job	﻿2026-11-26T16:55:26.8743613Z Cleaning up orphan processes
+Design checks and debug APK	Complete job	2026-11-26T16:55:26.9014721Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, gradle/actions/setup-gradle@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
