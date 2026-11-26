@@ -16,3 +16,6 @@
 local.properties
 .env
 debug.keystore
+
+# local CI logs
+*-run.log
