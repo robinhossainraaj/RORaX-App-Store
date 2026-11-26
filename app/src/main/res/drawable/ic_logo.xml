@@ -1,0 +1,32 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="112dp"
+    android:height="112dp"
+    android:viewportWidth="112"
+    android:viewportHeight="112">
+    <!-- Background rounded squircle / hexagon -->
+    <path
+        android:fillColor="#131A22"
+        android:pathData="M56,6 C78,6 102,18 102,40 L102,72 C102,94 78,106 56,106 C34,106 10,94 10,72 L10,40 C10,18 34,6 56,6 Z" />
+    <!-- Gradient accent border -->
+    <path
+        android:strokeColor="#00E5A8"
+        android:strokeWidth="2.5"
+        android:pathData="M56,7 C77,7 101,19 101,40 L101,72 C101,93 77,105 56,105 C35,105 11,93 11,72 L11,40 C11,19 35,7 56,7 Z" />
+    <!-- Stylized Modern 'R' letterform with Play & Download arrow energy -->
+    <!-- Left vertical stem -->
+    <path
+        android:fillColor="#00E5A8"
+        android:pathData="M34,28 L45,28 L45,84 L34,84 Z" />
+    <!-- Top loop of R -->
+    <path
+        android:fillColor="#00E5A8"
+        android:pathData="M45,28 L66,28 C74.8,28 80,33.5 80,42.5 C80,51.5 74.8,57 66,57 L45,57 Z M45,37 L45,48 L64,48 C67.5,48 70,46 70,42.5 C70,39 67.5,37 64,37 Z" />
+    <!-- Diagonal energetic leg / download arrow -->
+    <path
+        android:fillColor="#4DA3FF"
+        android:pathData="M58,54 L75,84 L64,84 L49,57 L58,54 Z" />
+    <!-- Mini accent download arrow indicator -->
+    <path
+        android:fillColor="#00E5A8"
+        android:pathData="M78,66 L86,74 L78,82 L75,79 L79,75 L69,75 L69,73 L79,73 L75,69 Z" />
+</vector>

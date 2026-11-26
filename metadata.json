@@ -1,0 +1,6 @@
+{
+  "name": "RORAX App Store",
+  "description": "Personal installable Android app store for RORAX applications with download, update, and search capabilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
