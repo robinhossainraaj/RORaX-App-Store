@@ -38,7 +38,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalDensity
+import kotlin.math.roundToInt
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -55,7 +56,10 @@ import com.example.ui.notifications.NotificationsScreen
 import com.example.ui.request.RequestScreen
 import com.example.ui.settings.SettingsScreen
 import com.example.ui.splash.SplashScreen
+import com.example.ui.theme.AppMotion
+import com.example.ui.theme.dimensions
 import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.spacing
 
 data class BottomNavItem(
     val route: String,
@@ -87,6 +91,11 @@ fun AppNavHost(
     )
 
     var showInstallPermissionDialog by remember { mutableStateOf(false) }
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+    val slideDistancePx = with(LocalDensity.current) {
+        dimensions.navSlideDistance.toPx().roundToInt()
+    }
 
     if (showInstallPermissionDialog) {
         AlertDialog(
@@ -135,12 +144,18 @@ fun AppNavHost(
         bottomBar = {
             AnimatedVisibility(
                 visible = isBottomBarVisible,
-                enter = slideInVertically(initialOffsetY = { it }, animationSpec = tween(200)) + fadeIn(animationSpec = tween(200)),
-                exit = slideOutVertically(targetOffsetY = { it }, animationSpec = tween(200)) + fadeOut(animationSpec = tween(200))
+                enter = slideInVertically(
+                    initialOffsetY = { it },
+                    animationSpec = tween(AppMotion.Short4)
+                ) + fadeIn(animationSpec = tween(AppMotion.Short4)),
+                exit = slideOutVertically(
+                    targetOffsetY = { it },
+                    animationSpec = tween(AppMotion.Short4)
+                ) + fadeOut(animationSpec = tween(AppMotion.Short4))
             ) {
                 NavigationBar(
                     containerColor = MaterialTheme.colorScheme.surface,
-                    tonalElevation = 8.dp
+                    tonalElevation = spacing.sm
                 ) {
                     bottomNavItems.forEach { item ->
                         val selected = currentRoute == item.route
@@ -192,10 +207,34 @@ fun AppNavHost(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(bottom = paddingValues.calculateBottomPadding()),
-            enterTransition = { fadeIn(animationSpec = tween(200)) + slideInHorizontally(initialOffsetX = { 40 }, animationSpec = tween(200)) },
-            exitTransition = { fadeOut(animationSpec = tween(200)) + slideOutHorizontally(targetOffsetX = { -40 }, animationSpec = tween(200)) },
-            popEnterTransition = { fadeIn(animationSpec = tween(200)) + slideInHorizontally(initialOffsetX = { -40 }, animationSpec = tween(200)) },
-            popExitTransition = { fadeOut(animationSpec = tween(200)) + slideOutHorizontally(targetOffsetX = { 40 }, animationSpec = tween(200)) }
+            enterTransition = {
+                fadeIn(animationSpec = tween(AppMotion.Short4)) +
+                    slideInHorizontally(
+                        initialOffsetX = { slideDistancePx },
+                        animationSpec = tween(AppMotion.Short4)
+                    )
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(AppMotion.Short4)) +
+                    slideOutHorizontally(
+                        targetOffsetX = { -slideDistancePx },
+                        animationSpec = tween(AppMotion.Short4)
+                    )
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(AppMotion.Short4)) +
+                    slideInHorizontally(
+                        initialOffsetX = { -slideDistancePx },
+                        animationSpec = tween(AppMotion.Short4)
+                    )
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(AppMotion.Short4)) +
+                    slideOutHorizontally(
+                        targetOffsetX = { slideDistancePx },
+                        animationSpec = tween(AppMotion.Short4)
+                    )
+            }
         ) {
             // 1. Splash Screen
             composable(Screen.Splash.route) {

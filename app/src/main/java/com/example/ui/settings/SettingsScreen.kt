@@ -2,6 +2,7 @@ package com.example.ui.settings
 
 import android.content.pm.PackageManager
 import android.os.Build
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,8 +19,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
@@ -46,6 +45,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -56,7 +56,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.example.R
 import com.example.data.model.StoreInfo
 import com.example.data.repository.StoreUiState
@@ -66,7 +65,9 @@ import com.example.ui.details.openUrl
 import com.example.ui.details.sendEmail
 import com.example.ui.theme.AppButtonShape
 import com.example.ui.theme.AppCardShape
+import com.example.ui.theme.dimensions
 import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,6 +80,8 @@ fun SettingsScreen(
     val uiState by viewModel.uiState.collectAsState()
     val themeMode by viewModel.themeMode.collectAsState()
     val notificationsEnabled by viewModel.notificationsEnabled.collectAsState()
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
     val storeInfo = (uiState as? StoreUiState.Success)?.store ?: StoreInfo()
 
@@ -109,10 +112,14 @@ fun SettingsScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
-                .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .padding(
+                    start = spacing.lg,
+                    end = spacing.lg,
+                    top = spacing.sm,
+                    bottom = spacing.lg
+                ),
+            verticalArrangement = Arrangement.spacedBy(spacing.lg)
         ) {
-            // 1. Developer Info Card
             SettingsGroupCard(
                 title = stringResource(R.string.dev_info_title),
                 icon = Icons.Rounded.Person
@@ -124,7 +131,7 @@ fun SettingsScreen(
                 )
 
                 if (storeInfo.developerBio.isNotBlank()) {
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(spacing.xs))
                     Text(
                         text = storeInfo.developerBio,
                         style = MaterialTheme.typography.bodyMedium,
@@ -132,10 +139,10 @@ fun SettingsScreen(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(spacing.md))
 
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(spacing.sm),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     if (storeInfo.telegram.isNotBlank()) {
@@ -156,7 +163,6 @@ fun SettingsScreen(
                 }
             }
 
-            // 2. Theme Card
             SettingsGroupCard(
                 title = stringResource(R.string.theme_title),
                 icon = Icons.Rounded.DarkMode
@@ -166,13 +172,13 @@ fun SettingsScreen(
                     isSelected = themeMode == "dark",
                     onSelect = { viewModel.setTheme("dark") }
                 )
-                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 ThemeOptionRow(
                     title = stringResource(R.string.theme_light),
                     isSelected = themeMode == "light",
                     onSelect = { viewModel.setTheme("light") }
                 )
-                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 ThemeOptionRow(
                     title = stringResource(R.string.theme_system),
                     isSelected = themeMode == "system",
@@ -180,7 +186,6 @@ fun SettingsScreen(
                 )
             }
 
-            // 3. Notifications Toggle Card
             SettingsGroupCard(
                 title = stringResource(R.string.notifications_toggle_title),
                 icon = Icons.Rounded.Notifications
@@ -196,7 +201,7 @@ fun SettingsScreen(
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onBackground
                         )
-                        Spacer(modifier = Modifier.height(2.dp))
+                        Spacer(modifier = Modifier.height(dimensions.hairline))
                         Text(
                             text = stringResource(R.string.notifications_toggle_subtitle),
                             style = MaterialTheme.typography.bodyMedium,
@@ -209,7 +214,7 @@ fun SettingsScreen(
                         colors = SwitchDefaults.colors(
                             checkedThumbColor = MaterialTheme.colorScheme.onPrimary,
                             checkedTrackColor = MaterialTheme.colorScheme.primary,
-                            uncheckedThumbColor = MaterialTheme.colorScheme.onSurfaceMuted,
+                            uncheckedThumbColor = MaterialTheme.colorScheme.onSurfaceVariant,
                             uncheckedTrackColor = MaterialTheme.colorScheme.surfaceVariant
                         ),
                         modifier = Modifier.testTag("notifications_switch")
@@ -217,7 +222,6 @@ fun SettingsScreen(
                 }
             }
 
-            // 4. Request an APK Card
             SettingsGroupCard(
                 title = stringResource(R.string.request_apk_card_title),
                 icon = Icons.Rounded.Build
@@ -227,7 +231,7 @@ fun SettingsScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceMuted
                 )
-                Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(spacing.md))
                 Button(
                     onClick = onNavigateToRequest,
                     shape = AppButtonShape,
@@ -243,16 +247,15 @@ fun SettingsScreen(
                         text = stringResource(R.string.btn_request_apk),
                         style = MaterialTheme.typography.labelLarge
                     )
-                    Spacer(modifier = Modifier.width(6.dp))
+                    Spacer(modifier = Modifier.width(spacing.sm))
                     Icon(
                         imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
                         contentDescription = null,
-                        modifier = Modifier.size(18.dp)
+                        modifier = Modifier.size(dimensions.iconButton)
                     )
                 }
             }
 
-            // 5. About Card
             SettingsGroupCard(
                 title = stringResource(R.string.about_card_title),
                 icon = Icons.Rounded.Info
@@ -265,16 +268,16 @@ fun SettingsScreen(
                         painter = painterResource(id = R.drawable.ic_logo),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(44.dp)
+                        modifier = Modifier.size(dimensions.iconBrand)
                     )
-                    Spacer(modifier = Modifier.width(14.dp))
+                    Spacer(modifier = Modifier.width(spacing.lg))
                     Column {
                         Text(
                             text = stringResource(R.string.app_name),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onBackground
                         )
-                        Spacer(modifier = Modifier.height(2.dp))
+                        Spacer(modifier = Modifier.height(dimensions.hairline))
                         Text(
                             text = stringResource(R.string.about_version, appVersion),
                             style = MaterialTheme.typography.bodyMedium,
@@ -299,26 +302,29 @@ fun SettingsGroupCard(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+
     Box(
         modifier = modifier
             .fillMaxWidth()
             .clip(AppCardShape)
-            .background(MaterialTheme.colorScheme.surface)
-            .border(1.dp, MaterialTheme.colorScheme.outline, AppCardShape)
-            .padding(16.dp)
+            .background(MaterialTheme.colorScheme.surfaceContainerLow)
+            .border(BorderStroke(dimensions.hairline, MaterialTheme.colorScheme.outline), AppCardShape)
+            .padding(spacing.lg)
     ) {
         Column {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(bottom = 12.dp)
+                modifier = Modifier.padding(bottom = spacing.md)
             ) {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(dimensions.iconAction)
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(spacing.sm))
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleLarge,
@@ -336,11 +342,15 @@ fun ThemeOptionRow(
     isSelected: Boolean,
     onSelect: () -> Unit
 ) {
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onSelect)
-            .padding(vertical = 10.dp),
+            .minimumInteractiveComponentSize()
+            .padding(vertical = spacing.sm),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -352,8 +362,8 @@ fun ThemeOptionRow(
         Icon(
             imageVector = if (isSelected) Icons.Rounded.RadioButtonChecked else Icons.Rounded.RadioButtonUnchecked,
             contentDescription = null,
-            tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceMuted,
-            modifier = Modifier.size(22.dp)
+            tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(dimensions.iconLarge)
         )
     }
 }

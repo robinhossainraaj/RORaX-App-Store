@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,8 +22,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
@@ -45,6 +42,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -53,21 +51,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.R
 import com.example.data.Constants
 import com.example.data.local.AppNotification
 import com.example.ui.StoreViewModel
+import com.example.ui.theme.AppBadgeShape
 import com.example.ui.theme.AppCardShape
+import com.example.ui.theme.AppDotShape
+import com.example.ui.theme.dimensions
 import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.spacing
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -85,8 +84,9 @@ fun NotificationsScreen(
     val notifications by viewModel.notificationsHistory.collectAsState()
     val isSyncing by viewModel.isSyncingNotifications.collectAsState()
     val context = LocalContext.current
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
-    // Trigger sync and clear unread badge on entry
     LaunchedEffect(Unit) {
         viewModel.syncNotifications()
         viewModel.markNotificationsAsRead()
@@ -147,7 +147,7 @@ fun NotificationsScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(32.dp),
+                        .padding(spacing.xxxl),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(
@@ -156,8 +156,8 @@ fun NotificationsScreen(
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(80.dp)
-                                .clip(CircleShape)
+                                .size(dimensions.emptyIconContainer)
+                                .clip(AppDotShape)
                                 .background(MaterialTheme.colorScheme.surfaceVariant),
                             contentAlignment = Alignment.Center
                         ) {
@@ -165,11 +165,11 @@ fun NotificationsScreen(
                                 imageVector = Icons.Rounded.NotificationsNone,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(40.dp)
+                                modifier = Modifier.size(dimensions.iconHero)
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(spacing.xl))
 
                         Text(
                             text = stringResource(R.string.notifications_all_caught_up),
@@ -178,21 +178,26 @@ fun NotificationsScreen(
                             textAlign = TextAlign.Center
                         )
 
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(spacing.sm))
 
                         Text(
                             text = stringResource(R.string.notifications_empty_desc),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceMuted,
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.width(280.dp)
+                            modifier = Modifier.width(dimensions.emptyDescriptionWidth)
                         )
                     }
                 }
             } else {
                 LazyColumn(
-                    contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 12.dp, bottom = 24.dp),
-                    verticalArrangement = Arrangement.spacedBy(14.dp),
+                    contentPadding = PaddingValues(
+                        start = spacing.lg,
+                        end = spacing.lg,
+                        top = spacing.md,
+                        bottom = spacing.xxl
+                    ),
+                    verticalArrangement = Arrangement.spacedBy(spacing.md),
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(notifications, key = { it.id }) { item ->
@@ -220,6 +225,8 @@ fun NotificationCard(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
     val now = System.currentTimeMillis()
     val isScheduled = item.timestamp > now
     val isUpdate = item.type.equals("update", ignoreCase = true) || item.message.startsWith("Update", ignoreCase = true)
@@ -233,7 +240,7 @@ fun NotificationCard(
         )
         isAnnouncement -> Triple(
             stringResource(R.string.notification_badge_announcement),
-            Color(0xFFFFB020),
+            MaterialTheme.colorScheme.tertiary,
             Icons.Rounded.Campaign
         )
         else -> Triple(
@@ -246,34 +253,32 @@ fun NotificationCard(
     val cardBorderColor = if (!item.isRead) {
         MaterialTheme.colorScheme.primary.copy(alpha = 0.45f)
     } else {
-        MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
+        MaterialTheme.colorScheme.outline
     }
 
     Surface(
         shape = AppCardShape,
-        color = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(1.dp, cardBorderColor),
-        tonalElevation = 2.dp,
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        border = BorderStroke(dimensions.hairline, cardBorderColor),
         modifier = modifier
             .fillMaxWidth()
             .clip(AppCardShape)
             .clickable(onClick = onClick)
+            .minimumInteractiveComponentSize()
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(spacing.lg)
         ) {
-            // 1. Header Bar: Icon badge + Tag + Relative/Scheduled time + Unread indicator
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Leading icon badge container
                 Box(
                     modifier = Modifier
-                        .size(38.dp)
-                        .clip(RoundedCornerShape(10.dp))
+                        .size(dimensions.iconHero)
+                        .clip(AppBadgeShape)
                         .background(badgeColor.copy(alpha = 0.15f)),
                     contentAlignment = Alignment.Center
                 ) {
@@ -281,49 +286,45 @@ fun NotificationCard(
                         imageVector = iconVector,
                         contentDescription = null,
                         tint = badgeColor,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(dimensions.iconAction)
                     )
                 }
 
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(spacing.sm))
 
-                // Tag Chip
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(6.dp))
+                        .clip(AppBadgeShape)
                         .background(badgeColor.copy(alpha = 0.12f))
-                        .padding(horizontal = 7.dp, vertical = 3.dp)
+                        .padding(horizontal = spacing.sm, vertical = spacing.xs)
                 ) {
                     Text(
                         text = badgeText,
-                        style = MaterialTheme.typography.labelMedium.copy(
-                            fontSize = 11.sp,
-                            letterSpacing = 0.5.sp
-                        ),
+                        style = MaterialTheme.typography.labelSmall,
                         color = badgeColor
                     )
                 }
 
                 if (isScheduled) {
-                    Spacer(modifier = Modifier.width(6.dp))
+                    Spacer(modifier = Modifier.width(spacing.sm))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
-                            .clip(RoundedCornerShape(6.dp))
+                            .clip(AppBadgeShape)
                             .background(MaterialTheme.colorScheme.surfaceVariant)
-                            .padding(horizontal = 6.dp, vertical = 3.dp)
+                            .padding(horizontal = spacing.sm, vertical = spacing.xs)
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Schedule,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(11.dp)
+                            modifier = Modifier.size(dimensions.iconTiny)
                         )
-                        Spacer(modifier = Modifier.width(4.dp))
+                        Spacer(modifier = Modifier.width(spacing.xs))
                         Text(
                             text = stringResource(R.string.notification_scheduled_badge),
-                            style = MaterialTheme.typography.labelMedium.copy(fontSize = 10.sp),
+                            style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.primary
                         )
                     }
@@ -331,60 +332,58 @@ fun NotificationCard(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                // Time label
                 Text(
                     text = formatNotificationTimeShort(item.timestamp, now),
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceMuted
+                    color = MaterialTheme.colorScheme.onSurfaceMuted,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
 
                 if (!item.isRead) {
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(spacing.sm))
                     Box(
                         modifier = Modifier
-                            .size(7.dp)
-                            .clip(CircleShape)
+                            .size(dimensions.badgeDot)
+                            .clip(AppDotShape)
                             .background(MaterialTheme.colorScheme.primary)
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(spacing.md))
 
-            // 2. Title
             if (item.title.isNotBlank()) {
                 Text(
                     text = item.title,
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onBackground
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(spacing.xs))
             }
 
-            // 3. Message Body
             Text(
                 text = item.message,
-                style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 20.sp),
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.88f)
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
-            // 4. If scheduled: explicit scheduled time chip
             if (isScheduled) {
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(spacing.sm))
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f))
-                        .padding(horizontal = 10.dp, vertical = 6.dp)
+                        .clip(AppBadgeShape)
+                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                        .padding(horizontal = spacing.sm, vertical = spacing.sm)
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Schedule,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurfaceMuted,
-                        modifier = Modifier.size(13.dp)
+                        modifier = Modifier.size(dimensions.iconSmall)
                     )
-                    Spacer(modifier = Modifier.width(6.dp))
+                    Spacer(modifier = Modifier.width(spacing.sm))
                     Text(
                         text = stringResource(
                             R.string.notification_scheduled_time,
@@ -396,17 +395,16 @@ fun NotificationCard(
                 }
             }
 
-            // 5. Action Footer Button (if link or package is attached)
             val hasLink = item.link.isNotBlank()
             val hasPackage = item.packageName.isNotBlank()
 
             if (hasLink || hasPackage) {
-                Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(spacing.md))
                 HorizontalDivider(
-                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f),
-                    thickness = 0.8.dp
+                    color = MaterialTheme.colorScheme.outlineVariant,
+                    thickness = dimensions.dividerThickness
                 )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(spacing.sm))
 
                 val isTelegram = item.link.contains("t.me", ignoreCase = true) ||
                         item.link.contains("telegram", ignoreCase = true)
@@ -420,10 +418,11 @@ fun NotificationCard(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f))
+                        .clip(AppBadgeShape)
+                        .background(MaterialTheme.colorScheme.secondaryContainer)
                         .clickable { onClick() }
-                        .padding(horizontal = 12.dp, vertical = 9.dp),
+                        .minimumInteractiveComponentSize()
+                        .padding(horizontal = spacing.md, vertical = spacing.sm),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -432,37 +431,37 @@ fun NotificationCard(
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_logo),
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(16.dp)
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                modifier = Modifier.size(dimensions.iconMedium)
                             )
                         } else if (hasPackage) {
                             Icon(
                                 imageVector = Icons.Rounded.SystemUpdate,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(16.dp)
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                modifier = Modifier.size(dimensions.iconMedium)
                             )
                         } else {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Rounded.OpenInNew,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(16.dp)
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                modifier = Modifier.size(dimensions.iconMedium)
                             )
                         }
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Spacer(modifier = Modifier.width(spacing.sm))
                         Text(
                             text = actionLabel,
                             style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onBackground
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
 
                     Icon(
                         imageVector = if (hasPackage) Icons.AutoMirrored.Rounded.KeyboardArrowRight else Icons.AutoMirrored.Rounded.OpenInNew,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(14.dp)
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.size(dimensions.iconSmall)
                     )
                 }
             }

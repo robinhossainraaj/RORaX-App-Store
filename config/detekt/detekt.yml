@@ -1,0 +1,27 @@
+# ui-android slop-blocking rules for RORAX App Store.
+# Active bans: generic gradient slop, filler copy, arbitrary values.
+# Enforced by the custom `detektDesign` Gradle task in app/build.gradle.kts.
+
+style:
+  ForbiddenComment:
+    active: true
+    comments:
+      - reason: "Banned buzzword. Replace with a concrete property from DESIGN_RULES.md."
+        value: "(?i)\\b(clean|modern|professional|sleek|premium|beautiful|elegant)\\b"
+
+  MagicNumber:
+    active: true
+    excludes:
+      - '**/ui/theme/**'
+      - '**/test/**'
+      - '**/androidTest/**'
+    ignoreNumbers: ['-1', '0', '1', '2']
+
+  ForbiddenMethodCall:
+    active: true
+    methods:
+      - reason: "Modifier.blur() is not allowed on regular surfaces."
+        value: "androidx.compose.ui.draw.blur"
+
+# Custom regex checks (raw dp/sp/Color, gradients, copy, fonts, infinite motion)
+# are implemented in app/build.gradle.kts under the detektDesign task.

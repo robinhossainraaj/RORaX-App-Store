@@ -1,8 +1,5 @@
 package com.example.ui.home
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +19,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
@@ -40,10 +36,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -59,7 +55,6 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.example.R
 import com.example.data.repository.StoreUiState
 import com.example.domain.InstallState
@@ -67,8 +62,11 @@ import com.example.ui.StoreViewModel
 import com.example.ui.components.AppCard
 import com.example.ui.components.AppCardSkeleton
 import com.example.ui.theme.AppCardShape
+import com.example.ui.theme.AppDotShape
 import com.example.ui.theme.AppSearchPillShape
+import com.example.ui.theme.dimensions
 import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,6 +82,8 @@ fun HomeScreen(
     val isSearchActive by viewModel.isSearchActive.collectAsState()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val unreadCount by viewModel.unreadNotificationsCount.collectAsState()
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
     val isRefreshing = uiState is StoreUiState.Loading && (uiState as? StoreUiState.Success)?.apps != null
 
@@ -111,14 +111,22 @@ fun HomeScreen(
         ) {
             when (val state = uiState) {
                 is StoreUiState.Loading -> {
-                    // 6 Shimmer skeleton cards
                     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-                        val columns = if (maxWidth >= 600.dp) GridCells.Adaptive(160.dp) else GridCells.Fixed(2)
+                        val columns = if (maxWidth >= dimensions.tabletBreakpoint) {
+                            GridCells.Adaptive(dimensions.gridMinWidth)
+                        } else {
+                            GridCells.Fixed(2)
+                        }
                         LazyVerticalGrid(
                             columns = columns,
-                            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 16.dp),
-                            horizontalArrangement = Arrangement.spacedBy(12.dp),
-                            verticalArrangement = Arrangement.spacedBy(12.dp),
+                            contentPadding = PaddingValues(
+                                start = spacing.lg,
+                                end = spacing.lg,
+                                top = spacing.sm,
+                                bottom = spacing.lg
+                            ),
+                            horizontalArrangement = Arrangement.spacedBy(spacing.md),
+                            verticalArrangement = Arrangement.spacedBy(spacing.md),
                             modifier = Modifier.fillMaxSize()
                         ) {
                             items(6) {
@@ -132,7 +140,7 @@ fun HomeScreen(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(24.dp),
+                            .padding(spacing.xxxl),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
@@ -140,16 +148,16 @@ fun HomeScreen(
                             imageVector = Icons.Rounded.CloudOff,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.error,
-                            modifier = Modifier.size(64.dp)
+                            modifier = Modifier.size(dimensions.iconBrand)
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(spacing.lg))
                         Text(
                             text = state.message,
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onBackground,
                             textAlign = TextAlign.Center
                         )
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(spacing.xl))
                         Button(
                             onClick = { viewModel.refresh() },
                             colors = ButtonDefaults.buttonColors(
@@ -158,8 +166,12 @@ fun HomeScreen(
                             ),
                             modifier = Modifier.testTag("retry_button")
                         ) {
-                            Icon(Icons.Rounded.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Icon(
+                                Icons.Rounded.Refresh,
+                                contentDescription = null,
+                                modifier = Modifier.size(dimensions.iconButton)
+                            )
+                            Spacer(modifier = Modifier.width(spacing.sm))
                             Text(stringResource(R.string.retry), style = MaterialTheme.typography.labelLarge)
                         }
                     }
@@ -182,7 +194,11 @@ fun HomeScreen(
                     }
 
                     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-                        val columns = if (maxWidth >= 600.dp) GridCells.Adaptive(160.dp) else GridCells.Fixed(2)
+                        val columns = if (maxWidth >= dimensions.tabletBreakpoint) {
+                            GridCells.Adaptive(dimensions.gridMinWidth)
+                        } else {
+                            GridCells.Fixed(2)
+                        }
 
                         if (state.apps.isEmpty()) {
                             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -199,9 +215,9 @@ fun HomeScreen(
                                         imageVector = Icons.Rounded.Search,
                                         contentDescription = null,
                                         tint = MaterialTheme.colorScheme.onSurfaceMuted,
-                                        modifier = Modifier.size(48.dp)
+                                        modifier = Modifier.size(dimensions.iconHero)
                                     )
-                                    Spacer(modifier = Modifier.height(12.dp))
+                                    Spacer(modifier = Modifier.height(spacing.md))
                                     Text(
                                         text = stringResource(R.string.no_apps_found, searchQuery),
                                         style = MaterialTheme.typography.bodyLarge,
@@ -213,19 +229,22 @@ fun HomeScreen(
                         } else {
                             LazyVerticalGrid(
                                 columns = columns,
-                                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 16.dp),
-                                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                                verticalArrangement = Arrangement.spacedBy(12.dp),
+                                contentPadding = PaddingValues(
+                                    start = spacing.lg,
+                                    end = spacing.lg,
+                                    top = spacing.sm,
+                                    bottom = spacing.lg
+                                ),
+                                horizontalArrangement = Arrangement.spacedBy(spacing.md),
+                                verticalArrangement = Arrangement.spacedBy(spacing.md),
                                 modifier = Modifier.fillMaxSize()
                             ) {
-                                // Offline banner
                                 if (state.isOffline) {
                                     item(span = { GridItemSpan(maxLineSpan) }) {
                                         OfflineBanner()
                                     }
                                 }
 
-                                // Updates available banner chip
                                 if (updatesCount > 0 && searchQuery.isBlank()) {
                                     item(span = { GridItemSpan(maxLineSpan) }) {
                                         UpdatesAvailableBanner(
@@ -262,6 +281,9 @@ fun HomeTopBar(
     onToggleSearch: (Boolean) -> Unit,
     onNotificationsClick: () -> Unit
 ) {
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+
     TopAppBar(
         title = {
             if (isSearchActive) {
@@ -273,10 +295,10 @@ fun HomeTopBar(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(42.dp)
+                        .height(dimensions.searchBarHeight)
                         .clip(AppSearchPillShape)
                         .background(MaterialTheme.colorScheme.surfaceVariant)
-                        .padding(horizontal = 12.dp),
+                        .padding(horizontal = spacing.md),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     BasicTextField(
@@ -284,7 +306,7 @@ fun HomeTopBar(
                         onValueChange = onSearchQueryChange,
                         singleLine = true,
                         textStyle = MaterialTheme.typography.bodyLarge.copy(
-                            color = MaterialTheme.colorScheme.onBackground
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         ),
                         cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
                         modifier = Modifier
@@ -296,7 +318,7 @@ fun HomeTopBar(
                                 Text(
                                     text = stringResource(R.string.search_hint),
                                     style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceMuted
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
                             innerTextField()
@@ -304,14 +326,11 @@ fun HomeTopBar(
                     )
 
                     if (searchQuery.isNotEmpty()) {
-                        IconButton(
-                            onClick = { onSearchQueryChange("") },
-                            modifier = Modifier.size(32.dp)
-                        ) {
+                        IconButton(onClick = { onSearchQueryChange("") }) {
                             Icon(
                                 imageVector = Icons.Rounded.Close,
                                 contentDescription = stringResource(R.string.search_clear),
-                                tint = MaterialTheme.colorScheme.onSurfaceMuted
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     }
@@ -326,10 +345,7 @@ fun HomeTopBar(
         },
         navigationIcon = {
             if (isSearchActive) {
-                IconButton(
-                    onClick = { onToggleSearch(false) },
-                    modifier = Modifier.size(40.dp)
-                ) {
+                IconButton(onClick = { onToggleSearch(false) }) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
                         contentDescription = stringResource(R.string.search_close),
@@ -346,7 +362,7 @@ fun HomeTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Search,
-                        contentDescription = "Search",
+                        contentDescription = stringResource(R.string.search_hint),
                         tint = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -366,9 +382,9 @@ fun HomeTopBar(
                         Box(
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
-                                .padding(top = 8.dp, end = 8.dp)
-                                .size(9.dp)
-                                .clip(CircleShape)
+                                .padding(top = spacing.sm, end = spacing.sm)
+                                .size(dimensions.badgeDot)
+                                .clip(AppDotShape)
                                 .background(MaterialTheme.colorScheme.primary)
                         )
                     }
@@ -384,12 +400,15 @@ fun HomeTopBar(
 
 @Composable
 fun OfflineBanner(modifier: Modifier = Modifier) {
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+
     Box(
         modifier = modifier
             .fillMaxWidth()
             .clip(AppCardShape)
             .background(MaterialTheme.colorScheme.surfaceVariant)
-            .padding(horizontal = 14.dp, vertical = 8.dp)
+            .padding(horizontal = spacing.lg, vertical = spacing.sm)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -400,13 +419,13 @@ fun OfflineBanner(modifier: Modifier = Modifier) {
                 imageVector = Icons.Rounded.CloudOff,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.error,
-                modifier = Modifier.size(16.dp)
+                modifier = Modifier.size(dimensions.iconMedium)
             )
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(spacing.sm))
             Text(
                 text = stringResource(R.string.offline_banner),
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }
@@ -418,13 +437,17 @@ fun UpdatesAvailableBanner(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+
     Box(
         modifier = modifier
             .fillMaxWidth()
             .clip(AppCardShape)
-            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f))
+            .background(MaterialTheme.colorScheme.primaryContainer)
             .clickable(onClick = onClick)
-            .padding(horizontal = 14.dp, vertical = 10.dp)
+            .minimumInteractiveComponentSize()
+            .padding(horizontal = spacing.lg, vertical = spacing.sm)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -435,20 +458,20 @@ fun UpdatesAvailableBanner(
                 Icon(
                     imageVector = Icons.Rounded.SystemUpdate,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(18.dp)
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.size(dimensions.iconButton)
                 )
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(spacing.sm))
                 Text(
                     text = stringResource(R.string.updates_available_banner, count),
                     style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
             Text(
                 text = stringResource(R.string.btn_view),
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
     }

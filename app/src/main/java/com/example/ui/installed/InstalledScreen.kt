@@ -1,6 +1,6 @@
 package com.example.ui.installed
 
-import android.widget.Toast
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.ShoppingBag
@@ -32,8 +31,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -47,7 +46,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.example.R
@@ -56,11 +54,12 @@ import com.example.data.repository.StoreUiState
 import com.example.domain.InstallState
 import com.example.ui.StoreViewModel
 import com.example.ui.components.InstallButton
-import com.example.ui.components.shimmerBrush
 import com.example.ui.theme.AppButtonShape
 import com.example.ui.theme.AppCardShape
 import com.example.ui.theme.AppIconShape
+import com.example.ui.theme.dimensions
 import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,10 +72,11 @@ fun InstalledScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val installStates by viewModel.installStates.collectAsState()
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
     val apps = (uiState as? StoreUiState.Success)?.apps ?: emptyList()
 
-    // Apps installed on this device
     val updatesAvailableApps = remember(apps, installStates) {
         apps.filter { app ->
             val state = installStates[app.packageName]
@@ -120,7 +120,7 @@ fun InstalledScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(24.dp),
+                    .padding(spacing.xxxl),
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -128,15 +128,15 @@ fun InstalledScreen(
                         imageVector = Icons.Rounded.CheckCircle,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurfaceMuted,
-                        modifier = Modifier.size(64.dp)
+                        modifier = Modifier.size(dimensions.iconBrand)
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spacing.lg))
                     Text(
                         text = stringResource(R.string.no_installed_apps),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceMuted
                     )
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(spacing.xl))
                     Button(
                         onClick = onNavigateToHome,
                         shape = AppButtonShape,
@@ -146,21 +146,29 @@ fun InstalledScreen(
                         ),
                         modifier = Modifier.testTag("browse_store_button")
                     ) {
-                        Icon(Icons.Rounded.ShoppingBag, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Icon(
+                            Icons.Rounded.ShoppingBag,
+                            contentDescription = null,
+                            modifier = Modifier.size(dimensions.iconButton)
+                        )
+                        Spacer(modifier = Modifier.width(spacing.sm))
                         Text(stringResource(R.string.browse_store), style = MaterialTheme.typography.labelLarge)
                     }
                 }
             }
         } else {
             LazyColumn(
-                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = PaddingValues(
+                    start = spacing.lg,
+                    end = spacing.lg,
+                    top = spacing.sm,
+                    bottom = spacing.lg
+                ),
+                verticalArrangement = Arrangement.spacedBy(spacing.md),
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                // Updates available section
                 if (updatesAvailableApps.isNotEmpty()) {
                     item {
                         Row(
@@ -175,15 +183,19 @@ fun InstalledScreen(
                             )
                             Button(
                                 onClick = { viewModel.updateAll() },
-                                shape = RoundedCornerShape(20.dp),
+                                shape = AppButtonShape,
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = MaterialTheme.colorScheme.primary,
                                     contentColor = MaterialTheme.colorScheme.onPrimary
                                 ),
                                 modifier = Modifier.testTag("update_all_button")
                             ) {
-                                Icon(Icons.Rounded.SystemUpdate, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(modifier = Modifier.width(6.dp))
+                                Icon(
+                                    Icons.Rounded.SystemUpdate,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(dimensions.iconMedium)
+                                )
+                                Spacer(modifier = Modifier.width(spacing.sm))
                                 Text(
                                     text = stringResource(R.string.update_all),
                                     style = MaterialTheme.typography.labelMedium
@@ -208,14 +220,13 @@ fun InstalledScreen(
                     }
                 }
 
-                // Up to date section
                 if (upToDateApps.isNotEmpty()) {
                     item {
                         Text(
                             text = stringResource(R.string.up_to_date_section, upToDateApps.size),
                             style = MaterialTheme.typography.titleLarge,
                             color = MaterialTheme.colorScheme.onBackground,
-                            modifier = Modifier.padding(top = 8.dp)
+                            modifier = Modifier.padding(top = spacing.sm)
                         )
                     }
 
@@ -251,15 +262,18 @@ fun InstalledAppRow(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
     Box(
         modifier = modifier
             .fillMaxWidth()
             .clip(AppCardShape)
-            .background(MaterialTheme.colorScheme.surface)
-            .border(1.dp, MaterialTheme.colorScheme.outline, AppCardShape)
+            .background(MaterialTheme.colorScheme.surfaceContainerLow)
+            .border(BorderStroke(dimensions.hairline, MaterialTheme.colorScheme.outline), AppCardShape)
             .clickable(onClick = onClick)
-            .padding(14.dp)
+            .minimumInteractiveComponentSize()
+            .padding(spacing.lg)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -273,12 +287,16 @@ fun InstalledAppRow(
                 contentDescription = app.name,
                 contentScale = ContentScale.Crop,
                 loading = {
-                    Box(modifier = Modifier.size(56.dp).background(shimmerBrush()))
+                    Box(
+                        modifier = Modifier
+                            .size(dimensions.avatarList)
+                            .background(MaterialTheme.colorScheme.surfaceVariant)
+                    )
                 },
                 error = {
                     Box(
                         modifier = Modifier
-                            .size(56.dp)
+                            .size(dimensions.avatarList)
                             .background(MaterialTheme.colorScheme.surfaceVariant),
                         contentAlignment = Alignment.Center
                     ) {
@@ -286,16 +304,16 @@ fun InstalledAppRow(
                             painter = painterResource(id = R.drawable.ic_logo),
                             contentDescription = app.name,
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier.size(dimensions.iconHero)
                         )
                     }
                 },
                 modifier = Modifier
-                    .size(56.dp)
+                    .size(dimensions.avatarList)
                     .clip(AppIconShape)
             )
 
-            Spacer(modifier = Modifier.width(14.dp))
+            Spacer(modifier = Modifier.width(spacing.lg))
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
@@ -306,7 +324,7 @@ fun InstalledAppRow(
                     overflow = TextOverflow.Ellipsis
                 )
 
-                Spacer(modifier = Modifier.height(2.dp))
+                Spacer(modifier = Modifier.height(dimensions.hairline))
 
                 if (isUpdate) {
                     val installedCode = (installState as? InstallState.UpdateAvailable)?.installedCode
@@ -331,16 +349,15 @@ fun InstalledAppRow(
                 }
             }
 
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(spacing.md))
 
-            // Action button (UPDATE / OPEN / live progress)
-            Box(modifier = Modifier.width(108.dp)) {
+            Box(modifier = Modifier.width(dimensions.actionColumnWidth)) {
                 InstallButton(
                     installState = installState,
                     onInstallClick = onInstallClick,
                     onOpenClick = onOpenClick,
                     onCancelDownload = onCancelDownload,
-                    modifier = Modifier.height(44.dp)
+                    modifier = Modifier.height(dimensions.buttonHeight)
                 )
             }
         }

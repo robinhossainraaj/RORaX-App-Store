@@ -13,54 +13,40 @@ val Rajdhani = FontFamily(
     Font(R.font.rajdhani_bold, FontWeight.Bold)
 )
 
+/** Tracking used by the launch wordmark. */
+val WordmarkTracking = 4.sp
+
+private fun style(
+    weight: FontWeight,
+    size: Int,
+    lineHeight: Int,
+    tracking: Float = 0f
+) = TextStyle(
+    fontFamily = Rajdhani,
+    fontWeight = weight,
+    fontSize = size.sp,
+    lineHeight = lineHeight.sp,
+    letterSpacing = tracking.sp
+)
+
+/**
+ * Material 3 roles mapped to seven type sizes. Rajdhani carries the RORAX
+ * display personality while keeping one family across the app.
+ */
 val AppTypography = Typography(
-    displayLarge = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.Bold,
-        fontSize = 32.sp,
-        lineHeight = 38.sp
-    ),
-    headlineMedium = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 30.sp
-    ),
-    titleLarge = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        lineHeight = 26.sp
-    ),
-    titleMedium = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.Bold,
-        fontSize = 17.sp,
-        lineHeight = 22.sp
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
-        lineHeight = 22.sp
-    ),
-    bodyMedium = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
-        lineHeight = 19.sp
-    ),
-    labelLarge = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.Bold,
-        fontSize = 15.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.8.sp
-    ),
-    labelMedium = TextStyle(
-        fontFamily = Rajdhani,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 12.sp,
-        lineHeight = 16.sp
-    )
+    displayLarge = style(FontWeight.Bold, 45, 52),
+    displayMedium = style(FontWeight.Bold, 32, 38),
+    displaySmall = style(FontWeight.Bold, 32, 38),
+    headlineLarge = style(FontWeight.Bold, 32, 38),
+    headlineMedium = style(FontWeight.Bold, 24, 30),
+    headlineSmall = style(FontWeight.Bold, 24, 30),
+    titleLarge = style(FontWeight.Bold, 20, 26),
+    titleMedium = style(FontWeight.Bold, 16, 22),
+    titleSmall = style(FontWeight.SemiBold, 16, 22),
+    bodyLarge = style(FontWeight.SemiBold, 16, 24),
+    bodyMedium = style(FontWeight.SemiBold, 14, 20),
+    bodySmall = style(FontWeight.SemiBold, 12, 16),
+    labelLarge = style(FontWeight.Bold, 14, 20, 0.5f),
+    labelMedium = style(FontWeight.SemiBold, 12, 16, 0.5f),
+    labelSmall = style(FontWeight.SemiBold, 12, 16)
 )

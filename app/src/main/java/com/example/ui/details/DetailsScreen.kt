@@ -6,6 +6,7 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -24,14 +25,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material.icons.rounded.Share
-import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -43,6 +41,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -52,14 +51,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.example.R
@@ -70,10 +67,12 @@ import com.example.domain.InstallState
 import com.example.ui.StoreViewModel
 import com.example.ui.components.InstallButton
 import com.example.ui.components.ScreenshotRow
-import com.example.ui.components.shimmerBrush
 import com.example.ui.theme.AppCardShape
+import com.example.ui.theme.AppChipShape
 import com.example.ui.theme.AppDetailIconShape
+import com.example.ui.theme.dimensions
 import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -89,6 +88,8 @@ fun DetailsScreen(
     val context = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
     val installStates by viewModel.installStates.collectAsState()
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
     val currentSuccess = uiState as? StoreUiState.Success
     val app = currentSuccess?.apps?.firstOrNull { it.packageName == packageName }
@@ -111,7 +112,7 @@ fun DetailsScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f)
                 ),
                 windowInsets = TopAppBarDefaults.windowInsets
             )
@@ -133,7 +134,7 @@ fun DetailsScreen(
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onBackground
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spacing.lg))
                     TextButton(onClick = onBack) {
                         Text(stringResource(R.string.back), style = MaterialTheme.typography.labelLarge)
                     }
@@ -150,13 +151,12 @@ fun DetailsScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(scrollState)
-                .padding(bottom = 32.dp)
+                .padding(bottom = spacing.xxxl)
         ) {
-            // 1. Header (Icon + Titles)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = spacing.lg),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 SubcomposeAsyncImage(
@@ -169,14 +169,14 @@ fun DetailsScreen(
                     loading = {
                         Box(
                             modifier = Modifier
-                                .size(96.dp)
-                                .background(shimmerBrush())
+                                .size(dimensions.avatarDetail)
+                                .background(MaterialTheme.colorScheme.surfaceVariant)
                         )
                     },
                     error = {
                         Box(
                             modifier = Modifier
-                                .size(96.dp)
+                                .size(dimensions.avatarDetail)
                                 .background(MaterialTheme.colorScheme.surfaceVariant),
                             contentAlignment = Alignment.Center
                         ) {
@@ -184,16 +184,16 @@ fun DetailsScreen(
                                 painter = painterResource(id = R.drawable.ic_logo),
                                 contentDescription = app.name,
                                 tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(54.dp)
+                                modifier = Modifier.size(dimensions.avatarList)
                             )
                         }
                     },
                     modifier = Modifier
-                        .size(96.dp)
+                        .size(dimensions.avatarDetail)
                         .clip(AppDetailIconShape)
                 )
 
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(spacing.lg))
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
@@ -202,7 +202,7 @@ fun DetailsScreen(
                         color = MaterialTheme.colorScheme.onBackground
                     )
 
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(spacing.xs))
 
                     val devName = storeInfo.developerName.ifBlank { "RORAX" }
                     Text(
@@ -211,7 +211,7 @@ fun DetailsScreen(
                         color = MaterialTheme.colorScheme.primary
                     )
 
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(dimensions.hairline))
 
                     Text(
                         text = app.packageName,
@@ -221,17 +221,16 @@ fun DetailsScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(spacing.xl))
 
-            // 2. Info Row (Version, Size, Updated with thin vertical dividers)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = spacing.lg)
                     .clip(AppCardShape)
-                    .background(MaterialTheme.colorScheme.surface)
-                    .border(1.dp, MaterialTheme.colorScheme.outline, AppCardShape)
-                    .padding(vertical = 14.dp)
+                    .background(MaterialTheme.colorScheme.surfaceContainerLow)
+                    .border(BorderStroke(dimensions.hairline, MaterialTheme.colorScheme.outline), AppCardShape)
+                    .padding(vertical = spacing.md)
                     .height(IntrinsicSize.Min),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
@@ -243,7 +242,7 @@ fun DetailsScreen(
                 )
                 VerticalDivider(
                     color = MaterialTheme.colorScheme.outline,
-                    modifier = Modifier.padding(vertical = 4.dp)
+                    modifier = Modifier.padding(vertical = spacing.xs)
                 )
                 InfoColumn(
                     label = stringResource(R.string.size_label),
@@ -252,7 +251,7 @@ fun DetailsScreen(
                 )
                 VerticalDivider(
                     color = MaterialTheme.colorScheme.outline,
-                    modifier = Modifier.padding(vertical = 4.dp)
+                    modifier = Modifier.padding(vertical = spacing.xs)
                 )
                 InfoColumn(
                     label = stringResource(R.string.updated_label),
@@ -261,13 +260,12 @@ fun DetailsScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(spacing.xl))
 
-            // 3. Main Action Button
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = spacing.lg)
             ) {
                 InstallButton(
                     installState = installState,
@@ -284,9 +282,8 @@ fun DetailsScreen(
                     }
                 )
 
-                // Installed version or update status indicator text
                 if (installState is InstallState.UpToDate) {
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(spacing.sm))
                     Text(
                         text = stringResource(R.string.installed_version, app.versionName.ifBlank { "1.0.0" }),
                         style = MaterialTheme.typography.bodyMedium,
@@ -294,7 +291,7 @@ fun DetailsScreen(
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
                 } else if (installState is InstallState.UpdateAvailable) {
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(spacing.sm))
                     Text(
                         text = stringResource(
                             R.string.update_available_version,
@@ -308,20 +305,18 @@ fun DetailsScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(spacing.xxl))
 
-            // 4. Screenshots (Only if non-empty)
             if (app.screenshots.isNotEmpty()) {
                 ScreenshotRow(screenshots = app.screenshots)
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(spacing.xxl))
             }
 
-            // 5. About this app (Expandable 4 lines)
             if (app.description.isNotBlank()) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
+                        .padding(horizontal = spacing.lg)
                 ) {
                     Text(
                         text = stringResource(R.string.about_title),
@@ -329,20 +324,20 @@ fun DetailsScreen(
                         color = MaterialTheme.colorScheme.onBackground
                     )
 
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(spacing.sm))
 
                     var isExpanded by remember { mutableStateOf(false) }
 
                     Text(
                         text = app.description,
                         style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.85f),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = if (isExpanded) Int.MAX_VALUE else 4,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.animateContentSize()
                     )
 
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(spacing.xs))
 
                     Text(
                         text = if (isExpanded) stringResource(R.string.read_less) else stringResource(R.string.read_more),
@@ -350,18 +345,18 @@ fun DetailsScreen(
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier
                             .clickable { isExpanded = !isExpanded }
-                            .padding(vertical = 4.dp)
+                            .minimumInteractiveComponentSize()
+                            .padding(vertical = spacing.xs)
                     )
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(spacing.xxl))
             }
 
-            // 6. App information card
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = spacing.lg)
             ) {
                 Text(
                     text = stringResource(R.string.app_info_title),
@@ -369,37 +364,36 @@ fun DetailsScreen(
                     color = MaterialTheme.colorScheme.onBackground
                 )
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(spacing.md))
 
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(AppCardShape)
-                        .background(MaterialTheme.colorScheme.surface)
-                        .border(1.dp, MaterialTheme.colorScheme.outline, AppCardShape)
-                        .padding(16.dp)
+                        .background(MaterialTheme.colorScheme.surfaceContainerLow)
+                        .border(BorderStroke(dimensions.hairline, MaterialTheme.colorScheme.outline), AppCardShape)
+                        .padding(spacing.lg)
                 ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(spacing.sm)) {
                         InfoRow(label = stringResource(R.string.info_package), value = app.packageName)
-                        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                         InfoRow(label = stringResource(R.string.info_version_name), value = app.versionName.ifBlank { "1.0.0" })
-                        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                         InfoRow(label = stringResource(R.string.info_version_code), value = app.versionCode.toString())
-                        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                         InfoRow(label = stringResource(R.string.info_size), value = app.formattedSize.ifBlank { "—" })
-                        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                         InfoRow(label = stringResource(R.string.info_last_updated), value = app.formattedUpdatedAt.ifBlank { "Recent" })
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(spacing.xxl))
 
-            // 7. Developer Section
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = spacing.lg)
             ) {
                 Text(
                     text = stringResource(R.string.developer_title),
@@ -407,15 +401,15 @@ fun DetailsScreen(
                     color = MaterialTheme.colorScheme.onBackground
                 )
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(spacing.md))
 
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(AppCardShape)
-                        .background(MaterialTheme.colorScheme.surface)
-                        .border(1.dp, MaterialTheme.colorScheme.outline, AppCardShape)
-                        .padding(16.dp)
+                        .background(MaterialTheme.colorScheme.surfaceContainerLow)
+                        .border(BorderStroke(dimensions.hairline, MaterialTheme.colorScheme.outline), AppCardShape)
+                        .padding(spacing.lg)
                 ) {
                     Column {
                         Text(
@@ -425,7 +419,7 @@ fun DetailsScreen(
                         )
 
                         if (storeInfo.developerBio.isNotBlank()) {
-                            Spacer(modifier = Modifier.height(4.dp))
+                            Spacer(modifier = Modifier.height(spacing.xs))
                             Text(
                                 text = storeInfo.developerBio,
                                 style = MaterialTheme.typography.bodyMedium,
@@ -433,10 +427,10 @@ fun DetailsScreen(
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(14.dp))
+                        Spacer(modifier = Modifier.height(spacing.md))
 
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            horizontalArrangement = Arrangement.spacedBy(spacing.sm),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             if (storeInfo.telegram.isNotBlank()) {
@@ -468,6 +462,8 @@ fun InfoColumn(
     value: String,
     modifier: Modifier = Modifier
 ) {
+    val spacing = MaterialTheme.spacing
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -477,7 +473,7 @@ fun InfoColumn(
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceMuted
         )
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(spacing.xs))
         Text(
             text = value,
             style = MaterialTheme.typography.titleMedium,
@@ -517,35 +513,39 @@ fun ContactChip(
     iconRes: Int? = null,
     onClick: () -> Unit
 ) {
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+
     Box(
         modifier = Modifier
-            .clip(RoundedCornerShape(20.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .clip(AppChipShape)
+            .background(MaterialTheme.colorScheme.secondaryContainer)
             .clickable(onClick = onClick)
-            .padding(horizontal = 12.dp, vertical = 7.dp)
+            .minimumInteractiveComponentSize()
+            .padding(horizontal = spacing.lg, vertical = spacing.sm)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             if (imageVector != null) {
                 Icon(
                     imageVector = imageVector,
                     contentDescription = label,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(16.dp)
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                    modifier = Modifier.size(dimensions.iconMedium)
                 )
-                Spacer(modifier = Modifier.width(6.dp))
+                Spacer(modifier = Modifier.width(spacing.sm))
             } else if (iconRes != null) {
                 Icon(
                     painter = painterResource(id = iconRes),
                     contentDescription = label,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(16.dp)
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                    modifier = Modifier.size(dimensions.iconMedium)
                 )
-                Spacer(modifier = Modifier.width(6.dp))
+                Spacer(modifier = Modifier.width(spacing.sm))
             }
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onSecondaryContainer
             )
         }
     }

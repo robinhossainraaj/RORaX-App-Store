@@ -8,6 +8,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -54,14 +55,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.example.R
 import com.example.data.model.StoreInfo
 import com.example.data.repository.StoreUiState
 import com.example.ui.StoreViewModel
 import com.example.ui.theme.AppButtonShape
 import com.example.ui.theme.AppCardShape
+import com.example.ui.theme.dimensions
 import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,6 +77,8 @@ fun RequestScreen(
     val context = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
     val storeInfo = (uiState as? StoreUiState.Success)?.store ?: StoreInfo()
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
     var appName by remember { mutableStateOf("") }
     var appDetails by remember { mutableStateOf("") }
@@ -158,19 +162,26 @@ fun RequestScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
-                .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .padding(
+                    start = spacing.lg,
+                    end = spacing.lg,
+                    top = spacing.sm,
+                    bottom = spacing.lg
+                ),
+            verticalArrangement = Arrangement.spacedBy(spacing.lg)
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(AppCardShape)
-                    .background(MaterialTheme.colorScheme.surface)
-                    .border(1.dp, MaterialTheme.colorScheme.outline, AppCardShape)
-                    .padding(16.dp)
+                    .background(MaterialTheme.colorScheme.surfaceContainerLow)
+                    .border(
+                        BorderStroke(dimensions.hairline, MaterialTheme.colorScheme.outline),
+                        AppCardShape
+                    )
+                    .padding(spacing.lg)
             ) {
-                Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                    // App Name
+                Column(verticalArrangement = Arrangement.spacedBy(spacing.md)) {
                     OutlinedTextField(
                         value = appName,
                         onValueChange = {
@@ -191,7 +202,6 @@ fun RequestScreen(
                             .testTag("request_app_name_input")
                     )
 
-                    // Details
                     OutlinedTextField(
                         value = appDetails,
                         onValueChange = {
@@ -213,7 +223,6 @@ fun RequestScreen(
                             .testTag("request_app_desc_input")
                     )
 
-                    // User Name
                     OutlinedTextField(
                         value = userName,
                         onValueChange = { userName = it },
@@ -228,7 +237,6 @@ fun RequestScreen(
                             .testTag("request_user_name_input")
                     )
 
-                    // Contact
                     OutlinedTextField(
                         value = userContact,
                         onValueChange = { userContact = it },
@@ -245,9 +253,8 @@ fun RequestScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(spacing.xs))
 
-            // Action send buttons
             if (storeInfo.telegram.isNotBlank()) {
                 Button(
                     onClick = {
@@ -260,21 +267,21 @@ fun RequestScreen(
                     },
                     shape = AppButtonShape,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        contentColor = MaterialTheme.colorScheme.onBackground
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp)
+                        .height(dimensions.buttonHeight)
                         .testTag("request_send_telegram")
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_logo),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(20.dp)
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.size(dimensions.iconAction)
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(spacing.sm))
                     Text(stringResource(R.string.btn_send_telegram), style = MaterialTheme.typography.labelLarge)
                 }
             }
@@ -294,15 +301,15 @@ fun RequestScreen(
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp)
+                        .height(dimensions.buttonHeight)
                         .testTag("request_send_email")
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Email,
                         contentDescription = null,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(dimensions.iconAction)
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(spacing.sm))
                     Text(stringResource(R.string.btn_send_email), style = MaterialTheme.typography.labelLarge)
                 }
             }
@@ -319,21 +326,21 @@ fun RequestScreen(
                     },
                     shape = AppButtonShape,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        contentColor = MaterialTheme.colorScheme.onBackground
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp)
+                        .height(dimensions.buttonHeight)
                         .testTag("request_send_facebook")
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Share,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.secondary,
-                        modifier = Modifier.size(20.dp)
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.size(dimensions.iconAction)
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(spacing.sm))
                     Text(stringResource(R.string.btn_send_facebook), style = MaterialTheme.typography.labelLarge)
                 }
             }

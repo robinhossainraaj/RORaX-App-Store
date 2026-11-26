@@ -1,7 +1,7 @@
 package com.example.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,12 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Android
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,15 +29,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.example.R
 import com.example.data.model.AppItem
 import com.example.domain.InstallState
 import com.example.ui.theme.AppCardShape
+import com.example.ui.theme.AppChipShape
 import com.example.ui.theme.AppIconShape
-import com.example.ui.theme.onSurfaceMuted
+import com.example.ui.theme.dimensions
+import com.example.ui.theme.spacing
 
 @Composable
 fun AppCard(
@@ -48,100 +48,96 @@ fun AppCard(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
 
-    Box(
+    Surface(
+        shape = AppCardShape,
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        border = BorderStroke(dimensions.hairline, MaterialTheme.colorScheme.outline),
         modifier = modifier
             .testTag("app_card_${app.packageName}")
-            .clip(AppCardShape)
-            .background(MaterialTheme.colorScheme.surface)
-            .border(1.dp, MaterialTheme.colorScheme.outline, AppCardShape)
             .clickable(onClick = onClick)
-            .padding(14.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(spacing.lg)
         ) {
-            // App Icon
             SubcomposeAsyncImage(
-                model = ImageRequest.Builder(context)
-                    .data(app.icon)
-                    .crossfade(true)
-                    .build(),
+                model = ImageRequest.Builder(context).data(app.icon).crossfade(true).build(),
                 contentDescription = app.name,
                 contentScale = ContentScale.Crop,
                 loading = {
                     Box(
                         modifier = Modifier
-                            .size(72.dp)
+                            .size(dimensions.avatarCard)
                             .clip(AppIconShape)
-                            .background(shimmerBrush())
+                            .background(MaterialTheme.colorScheme.surfaceVariant)
                     )
                 },
                 error = {
                     Box(
                         modifier = Modifier
-                            .size(72.dp)
+                            .size(dimensions.avatarCard)
+                            .clip(AppIconShape)
                             .background(MaterialTheme.colorScheme.surfaceVariant),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_logo),
-                            contentDescription = app.name,
+                            contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(40.dp)
+                            modifier = Modifier.size(dimensions.iconHero)
                         )
                     }
                 },
                 modifier = Modifier
-                    .size(72.dp)
+                    .size(dimensions.avatarCard)
                     .clip(AppIconShape)
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(Modifier.height(spacing.md))
 
-            // App Name
             Text(
                 text = app.name,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(3.dp))
+            Spacer(Modifier.height(spacing.xs))
 
-            // Package Name
             Text(
                 text = app.packageName,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceMuted,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(Modifier.height(spacing.sm))
 
-            // Size
             if (app.formattedSize.isNotBlank()) {
                 Text(
                     text = app.formattedSize,
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceMuted,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 )
             } else {
-                Spacer(modifier = Modifier.height(14.dp))
+                Spacer(Modifier.height(spacing.md))
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(Modifier.height(spacing.md))
 
-            // Status Chip
             AppStatusChip(state = installState)
         }
     }
@@ -152,58 +148,53 @@ fun AppStatusChip(
     state: InstallState,
     modifier: Modifier = Modifier
 ) {
-    val (label, containerColor, textColor) = when (state) {
-        is InstallState.NotInstalled -> Triple(
-            stringResource(R.string.btn_install),
-            MaterialTheme.colorScheme.primary,
-            MaterialTheme.colorScheme.onPrimary
-        )
-        is InstallState.UpdateAvailable -> Triple(
-            stringResource(R.string.btn_update),
-            MaterialTheme.colorScheme.primary,
-            MaterialTheme.colorScheme.onPrimary
-        )
-        is InstallState.UpToDate -> Triple(
-            stringResource(R.string.btn_open),
-            MaterialTheme.colorScheme.surfaceVariant,
-            MaterialTheme.colorScheme.secondary
-        )
-        is InstallState.Downloading -> Triple(
-            if (state.progress >= 0) "${state.progress}%" else "…",
-            MaterialTheme.colorScheme.surfaceVariant,
-            MaterialTheme.colorScheme.primary
-        )
-        is InstallState.Installing -> Triple(
-            stringResource(R.string.status_installing),
-            MaterialTheme.colorScheme.surfaceVariant,
-            MaterialTheme.colorScheme.primary
-        )
+    val spacing = MaterialTheme.spacing
+    val dimensions = MaterialTheme.dimensions
+    val colors = MaterialTheme.colorScheme
+
+    val label = when (state) {
+        is InstallState.NotInstalled -> stringResource(R.string.btn_install)
+        is InstallState.UpdateAvailable -> stringResource(R.string.btn_update)
+        is InstallState.UpToDate -> stringResource(R.string.btn_open)
+        is InstallState.Downloading -> if (state.progress >= 0) {
+            stringResource(R.string.status_downloading, state.progress)
+        } else {
+            stringResource(R.string.status_waiting)
+        }
+        is InstallState.Installing -> stringResource(R.string.status_installing)
     }
 
-    Box(
+    val (container, content) = when (state) {
+        is InstallState.NotInstalled, is InstallState.UpdateAvailable ->
+            colors.primary to colors.onPrimary
+        is InstallState.UpToDate ->
+            colors.secondaryContainer to colors.onSecondaryContainer
+        is InstallState.Downloading, is InstallState.Installing ->
+            colors.surfaceVariant to colors.primary
+    }
+
+    Surface(
+        shape = AppChipShape,
+        color = container,
+        contentColor = content,
         modifier = modifier
-            .clip(RoundedCornerShape(20.dp))
-            .background(containerColor)
-            .padding(horizontal = 14.dp, vertical = 5.dp),
-        contentAlignment = Alignment.Center
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(horizontal = spacing.md, vertical = spacing.sm)
         ) {
             if (state is InstallState.Downloading || state is InstallState.Installing) {
                 CircularProgressIndicator(
-                    strokeWidth = 2.dp,
-                    color = textColor,
-                    modifier = Modifier
-                        .size(12.dp)
-                        .padding(end = 4.dp)
+                    strokeWidth = dimensions.strokeThin,
+                    color = content,
+                    modifier = Modifier.size(dimensions.iconTiny)
                 )
+                Spacer(Modifier.width(spacing.xs))
             }
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelMedium,
-                color = textColor,
                 textAlign = TextAlign.Center
             )
         }

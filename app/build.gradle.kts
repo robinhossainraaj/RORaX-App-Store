@@ -146,3 +146,48 @@ dependencies {
   // "ksp"(libs.androidx.room.compiler)
   "ksp"(libs.moshi.kotlin.codegen)
 }
+
+// ui-android design guard. Kept as a plain Gradle task so the release build does
+// not depend on an extra detekt plugin version.
+tasks.register("detektDesign") {
+  group = "verification"
+  description = "Checks ui-android design rules outside ui/theme."
+  doLast {
+    val sourceFiles = fileTree("src/main/java") + fileTree("src/main/kotlin")
+    val violations = mutableListOf<String>()
+    val patterns = mapOf(
+      "Raw dp literal" to Regex("""\b\d+(?:\.\d+)?\.dp\b"""),
+      "Raw sp literal" to Regex("""\b\d+(?:\.\d+)?\.sp\b"""),
+      "Color literal outside theme" to Regex("""Color\(0x[0-9A-Fa-f]+\)"""),
+      "Generic gradient" to Regex("""Brush\.\w*Gradient"""),
+      "Filler copy" to Regex("""(?i)(lorem ipsum|lightning fast|blazing fast|powered by ai|built for the modern|get started in seconds|beautiful and intuitive|seamlessly integrate|effortlessly|the future of|reimagined|unleash the power of)"""),
+      "Buzzword" to Regex("""(?i)\b(clean|modern|professional|sleek|premium|beautiful|elegant)\b"""),
+      "Inline FontFamily" to Regex("""FontFamily\s*\("""),
+      "Decorative infinite transition" to Regex("""rememberInfiniteTransition""")
+    )
+
+    sourceFiles.forEach { file ->
+      if (file.isFile && file.extension == "kt" && !file.path.contains("/ui/theme/")) {
+        val text = file.readText()
+        patterns.forEach { (label, regex) ->
+          regex.findAll(text).forEach { match ->
+            val line = text.substring(0, match.range.first).count { it == '\n' } + 1
+            violations += "${file.relativeTo(rootDir)}:$line [$label] ${match.value}"
+          }
+        }
+      }
+    }
+
+    if (violations.isNotEmpty()) {
+      throw GradleException("ui-android design rule violations:\n" + violations.joinToString("\n"))
+    }
+  }
+}
+
+tasks.register("detekt") {
+  group = "verification"
+  description = "Alias for detektDesign; no detekt plugin is required."
+  dependsOn("detektDesign")
+}
+
+tasks.named("check") { dependsOn("detektDesign") }
