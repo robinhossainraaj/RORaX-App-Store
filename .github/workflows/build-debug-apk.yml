@@ -43,7 +43,7 @@ jobs:
             -dname "CN=Android Debug,O=Android,C=US"
 
       - name: Run design checks and lint
-        run: ./gradlew detektDesign lintDebug --stacktrace
+        run: ./gradlew detekt lint --stacktrace
 
       - name: Upload lint report on failure
         if: failure()
